@@ -4,9 +4,10 @@ server:
 
 langchain4j:
   open-ai:
-    chat-model:
+    streaming-chat-model:
       enabled: true
       api-key: "demo"
+      base-url: "http://langchain4j.dev/demo/openai/v1"
       model-name: "gpt-4o-mini"
   rag:
     embedding-store-content-retriever:

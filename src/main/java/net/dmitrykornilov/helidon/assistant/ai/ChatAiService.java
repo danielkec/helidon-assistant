@@ -1,12 +1,14 @@
 package net.dmitrykornilov.helidon.assistant.ai;
 
+import java.util.stream.Stream;
 import io.helidon.integrations.langchain4j.Ai;
 
+import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
-import dev.langchain4j.service.V;
 
 @Ai.Service
+@Ai.ChatMemoryProvider(AssistantMemoryProvider.NAME)
 public interface ChatAiService {
 
     @SystemMessage("""
@@ -14,9 +16,6 @@ public interface ChatAiService {
             
             Only answer questions related to Helidon and its components. If a question is not relevant to Helidon, 
             politely decline.
-            
-            Use the following conversation summary to keep context and maintain continuity:
-            {(summary})
             """)
-    String chat(@UserMessage String question, @V("summary") String previousConversationSummary);
+    Stream<String> chat(@UserMessage String question, @MemoryId String memoryId);
 }

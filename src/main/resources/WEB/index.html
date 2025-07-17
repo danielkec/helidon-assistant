@@ -116,7 +116,9 @@
   const chatBox = document.getElementById('chat-box');
   const userInput = document.getElementById('user-input');
   const sendButton = document.getElementById('send-button');
-  let summary = "";
+
+  // simplistic uuid
+  const memoryId = Math.random().toString(36).substring(2,15);
 
   function appendMessage(text, sender) {
     const div = document.createElement('div');
@@ -144,18 +146,35 @@
     userInput.value = '';
 
     try {
-      const response = await fetch('/chat', {
+      const reader = await fetch('/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: text, summary: summary })
-      });
+        body: JSON.stringify({ message: text, "memory-id": memoryId })
+      })
+        .then(res => res.body)
+        .then(body => body
+            .pipeThrough(new TextDecoderStream())
+            .getReader());
 
-      const data = await response.json();
-      summary = data.summary;
-      appendMessage(data.message || '_[No response]_ 🤖', 'assistant');
-      // appendMessage("Summary: " + summary);
+      const div = document.createElement('div');
+      div.className = `message assistant`;
+
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      div.appendChild(bubble);
+      chatBox.appendChild(div);
+
+      let joined = "";
+      while (true) {
+          const {value, done} = await reader.read();
+          if (done) break;
+          joined += value;
+          bubble.innerHTML = marked.parse(joined);
+      }
+
+      chatBox.scrollTop = chatBox.scrollHeight;
     } catch (err) {
       appendMessage('_[Error contacting assistant]_ ❌', 'assistant');
     }
