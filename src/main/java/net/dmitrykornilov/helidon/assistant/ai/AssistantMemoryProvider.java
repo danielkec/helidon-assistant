@@ -17,7 +17,7 @@ public class AssistantMemoryProvider implements Supplier<ChatMemoryProvider> {
     @Override
     public ChatMemoryProvider get() {
         return memoryId -> MessageWindowChatMemory.builder()
-                .maxMessages(100)
+                .maxMessages(10)
                 .id(memoryId)
                 .chatMemoryStore(new InMemoryChatMemoryStore()).build();
     }
