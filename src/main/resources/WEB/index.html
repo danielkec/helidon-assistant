@@ -37,6 +37,27 @@
             margin-bottom: 1rem;
         }
 
+        #header-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #ingest-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        #progress-bar {
+            display: none;
+            margin-bottom: 1rem;
+        }
+
+        #ingest-button {
+            margin-bottom: 1rem;
+        }
+
         .field {
             margin: 0;
         }
@@ -98,8 +119,13 @@
 </head>
 <body>
 <div id="chat-container">
-    <h1 class="title">Helidon Assistant</h1>
-
+    <div id="header-box">
+        <h1 class="title">Helidon Assistant</h1>
+        <div id="ingest-box">
+            <progress id="progress-bar" value="0" max="100"></progress>
+            <button id="ingest-button" class="button is-primary">Ingest</button>
+        </div>
+    </div>
     <div id="chat-box"></div>
 
     <div class="field has-addons" id="input-container">
@@ -115,8 +141,12 @@
 <script>
   const chatBox = document.getElementById('chat-box');
   const userInput = document.getElementById('user-input');
+  const ingestButton = document.getElementById('ingest-button');
   const sendButton = document.getElementById('send-button');
-  let summary = "";
+  const progressBar = document.getElementById('progress-bar');
+
+  // simplistic uuid
+  const memoryId = Math.random().toString(36).substring(2,15);
 
   function appendMessage(text, sender) {
     const div = document.createElement('div');
@@ -144,24 +174,69 @@
     userInput.value = '';
 
     try {
-      const response = await fetch('/chat', {
+      const reader = await fetch('/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: text, summary: summary })
-      });
+        body: JSON.stringify({ message: text, "memory-id": memoryId })
+      })
+        .then(res => res.body)
+        .then(body => body
+            .pipeThrough(new TextDecoderStream())
+            .getReader());
 
-      const data = await response.json();
-      summary = data.summary;
-      appendMessage(data.message || '_[No response]_ 🤖', 'assistant');
-      // appendMessage("Summary: " + summary);
+      const div = document.createElement('div');
+      div.className = `message assistant`;
+
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      div.appendChild(bubble);
+      chatBox.appendChild(div);
+
+      let joined = "";
+      while (true) {
+          const {value, done} = await reader.read();
+          if (done) break;
+          joined += value;
+          bubble.innerHTML = marked.parse(joined);
+          chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      chatBox.scrollTop = chatBox.scrollHeight;
     } catch (err) {
       appendMessage('_[Error contacting assistant]_ ❌', 'assistant');
     }
   }
 
+  async function ingest() {
+      const reader = await fetch('/ingest')
+          .then(res => res.body)
+          .then(body => body
+              .pipeThrough(new TextDecoderStream())
+              .getReader());
+      ingestButton.style.display = 'none';
+      progressBar.style.display = 'revert';
+      progressBar.max = 100000;
+
+      while (true) {
+          const {value, done} = await reader.read();
+          if (done) {
+              progressBar.style.display = 'none';
+              ingestButton.style.display = 'revert';
+              break;
+          }
+          if (progressBar.max === 100000) {
+              // max progress bar value is sent as first number
+              progressBar.max = value;
+              continue;
+          }
+          progressBar.value = value;
+      }
+  }
+
   sendButton.addEventListener('click', sendMessage);
+  ingestButton.addEventListener('click', ingest);
   userInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       sendMessage();

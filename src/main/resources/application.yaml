@@ -1,21 +1,51 @@
 server:
   host: "0.0.0.0"
   port: 8080
+  features:
+    static-content:
+      classpath:
+        - context: "/ui"
+          location: "/WEB"
+          welcome: "index.html"
 
 langchain4j:
-  open-ai:
+  oci-gen-ai:
     chat-model:
       enabled: true
-      api-key: "demo"
-      model-name: "gpt-4o-mini"
+      region: "eu-frankfurt-1"
+      compartment-id: "ocid1.tenancy.oc1..aaaaaaaaonou3anbsghdg723hfoodyj3y6gmx3kqma5dcou4n2fh2setk6ta"
+      model-name: "meta.llama-3.3-70b-instruct"
+
+  oracle:
+    embedding-store:
+      enabled: true
+      exact-search: false
+      data-source:
+        service-registry.named: "ora-ucp-ds"
+      embedding-table:
+        name: my_embedding_table
+        create-option: CREATE_OR_REPLACE
+
   rag:
     embedding-store-content-retriever:
       enabled: true
       max-results: 10
       min-score: 0.6
-      embedding-model: "@default"
-      embedding-store: "@default"
+      embedding-model:
+        service-registry.named: "@default"
+      embedding-store:
+        service-registry.named: "oracle"
 
 app:
-  root: "//home/dmitry/github/helidon/docs/src/main/asciidoc/mp"
+  root: "/home/daniel/idp/ora/helidon/helidon-4/docs/src/main/asciidoc/mp"
   inclusions: "*.adoc"
+
+data:
+  sources:
+    sql:
+      - name: "ora-ucp-ds"
+        provider.ucp:
+          username: "vector"
+          password: "vector"
+          url: "jdbc:oracle:thin:@localhost:1521/freepdb1"
+          connection-factory-class-name: oracle.jdbc.pool.OracleDataSource

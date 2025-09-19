@@ -43,6 +43,9 @@ mvn clean package
 Launch the assistant with:
 
 ```bash
+# Run Oracle DB
+docker run --name 23ai -p 1521:1521 -e ORACLE_PASSWORD=free -e APP_USER=vector -e APP_USER_PASSWORD=vector gvenzl/oracle-free:23-slim
+
 java -jar target/helidon-assistant.jar
 ```
 

@@ -4,9 +4,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
-import io.helidon.common.config.Config;
+import io.helidon.config.Config;
 import io.helidon.service.registry.Service;
 
 import dev.langchain4j.data.document.Metadata;
@@ -25,14 +26,14 @@ public class DocsIngestor {
 
     @Service.Inject
     DocsIngestor(Config config,
-                 EmbeddingStore<TextSegment> embeddingStore,
+                 @Service.Named("oracle") EmbeddingStore<TextSegment> embeddingStore,
                  EmbeddingModel embeddingModel) {
         this.config = config;
         this.embeddingStore = embeddingStore;
         this.embeddingModel = embeddingModel;
     }
 
-    public void ingest() {
+    public void ingest(Consumer<Integer> progressUpdater) {
         // Get files to process
         var appConfig = config.get("app");
         var root = appConfig.get("root").asString().orElseThrow();
@@ -40,10 +41,14 @@ public class DocsIngestor {
         var exclusions = appConfig.get("exclusions").asList(String.class).orElse(Collections.emptyList());
         var files = FileLister.listFiles(root, exclusions, inclusions);
 
+        // First send max progress bar value
+        progressUpdater.accept(files.size());
+
         // Process files
         var processor = new AsciiDocPreprocessor();
         var grouper = new ChunkGrouper(1000);
-        for (Path path : files) {
+        for (int y = 0; y < files.size(); y++) {
+            Path path = files.get(y);
             var chunks = processor.extractChunks(path.toFile());
             var groupedChunks = grouper.groupChunks(chunks);
 
@@ -73,6 +78,12 @@ public class DocsIngestor {
             }
 
             embeddingStore.addAll(embeddings.content(), segments);
+
+            progressUpdater.accept(y);
         }
+    }
+
+    public void clear() {
+        embeddingStore.removeAll();
     }
 }

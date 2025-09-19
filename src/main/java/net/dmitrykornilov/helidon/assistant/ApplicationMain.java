@@ -1,19 +1,17 @@
 package net.dmitrykornilov.helidon.assistant;
 
+import io.helidon.config.Config;
 import io.helidon.http.Header;
 import io.helidon.http.HeaderNames;
 import io.helidon.http.HeaderValues;
-
-import io.helidon.common.config.Config;
 import io.helidon.http.Status;
 import io.helidon.logging.common.LogConfig;
 import io.helidon.service.registry.Services;
 import io.helidon.webserver.WebServer;
 import io.helidon.webserver.http.HttpRouting;
-import io.helidon.webserver.staticcontent.StaticContentService;
 
-import net.dmitrykornilov.helidon.assistant.rag.DocsIngestor;
 import net.dmitrykornilov.helidon.assistant.rest.ChatBotService;
+import net.dmitrykornilov.helidon.assistant.rest.IngestService;
 
 public class ApplicationMain {
 
@@ -24,10 +22,6 @@ public class ApplicationMain {
         LogConfig.configureRuntime();
 
         var config = Services.get(Config.class);
-
-        // Initialize embedding store
-        Services.get(DocsIngestor.class)
-                .ingest();
 
         WebServer.builder()
                 .config(config.get("server"))
@@ -46,9 +40,7 @@ public class ApplicationMain {
                     res.headers().set(UI_REDIRECT);
                     res.send();
                 })
-                .register("/chat", Services.get(ChatBotService.class))
-                .register("/ui", StaticContentService.builder("WEB")
-                        .welcomeFileName("index.html")
-                        .build());
+                .register("/ingest", Services.get(IngestService.class))
+                .register("/chat", Services.get(ChatBotService.class));
     }
 }
