@@ -1,6 +1,7 @@
 package net.dmitrykornilov.helidon.assistant.rest;
 
-import java.util.Collections;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 
 import io.helidon.service.registry.Service;
 import io.helidon.webserver.http.HttpRules;
@@ -31,6 +32,8 @@ public class ChatBotService implements HttpService {
         var message = json.getString("message");
         var memoryId = json.getString("memory-id");
 
-        res.send(chatAiService.chat(message, memoryId));
+        var writer = new PrintStream(res.outputStream(), true, StandardCharsets.UTF_8);
+        chatAiService.chat(message, memoryId)
+                .forEach(writer::print);
     }
 }

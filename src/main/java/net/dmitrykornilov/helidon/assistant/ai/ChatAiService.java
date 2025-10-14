@@ -1,5 +1,7 @@
 package net.dmitrykornilov.helidon.assistant.ai;
 
+import java.util.stream.Stream;
+
 import io.helidon.integrations.langchain4j.Ai;
 
 import dev.langchain4j.service.MemoryId;
@@ -16,5 +18,5 @@ public interface ChatAiService {
             Only answer questions related to Helidon and its components. If a question is not relevant to Helidon, 
             politely decline.
             """)
-    String chat(@UserMessage String question, @MemoryId String memoryId);
+    Stream<String> chat(@UserMessage String question, @MemoryId String memoryId);
 }

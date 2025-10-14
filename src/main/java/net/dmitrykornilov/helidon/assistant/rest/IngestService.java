@@ -1,8 +1,7 @@
 package net.dmitrykornilov.helidon.assistant.rest;
 
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UncheckedIOException;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 
 import io.helidon.service.registry.Service;
 import io.helidon.webserver.http.HttpRules;
@@ -11,8 +10,6 @@ import io.helidon.webserver.http.ServerRequest;
 import io.helidon.webserver.http.ServerResponse;
 
 import net.dmitrykornilov.helidon.assistant.rag.DocsIngestor;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Service.Singleton
 public class IngestService implements HttpService {
@@ -31,15 +28,7 @@ public class IngestService implements HttpService {
 
     private void ingest(ServerRequest req, ServerResponse res) {
         docsIngestor.clear();
-
-        var osw = new OutputStreamWriter(res.outputStream(), UTF_8);
-        docsIngestor.ingest(progress -> {
-            try {
-                osw.append(String.valueOf(progress));
-                osw.flush();
-            } catch (IOException e) {
-                throw new UncheckedIOException(e);
-            }
-        });
+        var writer = new PrintStream(res.outputStream(), true, StandardCharsets.UTF_8);
+        docsIngestor.ingest((done, total) -> writer.println(done + "/" + total));
     }
 }

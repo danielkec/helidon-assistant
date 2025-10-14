@@ -1,11 +1,12 @@
 package net.dmitrykornilov.helidon.assistant.rag;
 
-import java.nio.file.Path;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.logging.Logger;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.LongAdder;
+import java.util.function.BiConsumer;
 
 import io.helidon.config.Config;
 import io.helidon.service.registry.Service;
@@ -15,12 +16,13 @@ import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 
+import static java.lang.System.Logger.Level.DEBUG;
+
 @Service.Singleton
 public class DocsIngestor {
-    private static final Logger LOGGER = Logger.getLogger(DocsIngestor.class.getName());
+    private static final System.Logger LOGGER = System.getLogger(DocsIngestor.class.getName());
 
     private final Config config;
-    private final AsciiDocPreprocessor preprocessor = new AsciiDocPreprocessor();
     private final EmbeddingStore<TextSegment> embeddingStore;
     private final EmbeddingModel embeddingModel;
 
@@ -33,7 +35,7 @@ public class DocsIngestor {
         this.embeddingModel = embeddingModel;
     }
 
-    public void ingest(Consumer<Integer> progressUpdater) {
+    public void ingest(BiConsumer<Integer, Integer> progressUpdater) {
         // Get files to process
         var appConfig = config.get("app");
         var root = appConfig.get("root").asString().orElseThrow();
@@ -41,46 +43,56 @@ public class DocsIngestor {
         var exclusions = appConfig.get("exclusions").asList(String.class).orElse(Collections.emptyList());
         var files = FileLister.listFiles(root, exclusions, inclusions);
 
-        // First send max progress bar value
-        progressUpdater.accept(files.size());
+        // First, send max progress bar value
+        progressUpdater.accept(0, files.size());
 
         // Process files
         var processor = new AsciiDocPreprocessor();
         var grouper = new ChunkGrouper(1000);
-        for (int y = 0; y < files.size(); y++) {
-            Path path = files.get(y);
-            var chunks = processor.extractChunks(path.toFile());
-            var groupedChunks = grouper.groupChunks(chunks);
 
-            // Convert to LangChain4J TextSegments with metadata
-            List<TextSegment> segments = new ArrayList<>();
-            for (int i = 0; i < groupedChunks.size(); i++) {
-                var chunk = groupedChunks.get(i);
-                var metadata = new Metadata()
-                        .put("source", path.toFile().getAbsolutePath())
-                        .put("chunk", String.valueOf(i + 1))
-                        .put("type", chunk.type().name())
-                        .put("section", chunk.sectionPath());
+        LongAdder y = new LongAdder();
 
-                segments.add(TextSegment.from(chunk.text(), metadata));
+        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            for (var file : files) {
+                executor.submit(() -> {
+                    ingestFile(file.toFile(), processor, grouper);
+                    y.increment();
+                    progressUpdater.accept(y.intValue(), files.size());
+                });
             }
-
-            // Embed the segments
-            var embeddings = embeddingModel.embedAll(segments);
-
-            // Print segments and metadata
-            for (int i = 0; i < segments.size(); i++) {
-                TextSegment segment = segments.get(i);
-                System.out.println("Chunk " + (i + 1) + ":\n" + segment.text() + "\n");
-                System.out.println("Metadata: " + segment.metadata());
-                System.out.println("Embedding vector size: " + embeddings.content().get(i).vector().length);
-                System.out.println("---");
-            }
-
-            embeddingStore.addAll(embeddings.content(), segments);
-
-            progressUpdater.accept(y);
         }
+    }
+
+    void ingestFile(File file, AsciiDocPreprocessor processor, ChunkGrouper grouper) {
+        var chunks = processor.extractChunks(file);
+        var groupedChunks = grouper.groupChunks(chunks);
+
+        // Convert to LangChain4j TextSegments with metadata
+        List<TextSegment> segments = new ArrayList<>();
+        for (int i = 0; i < groupedChunks.size(); i++) {
+            var chunk = groupedChunks.get(i);
+            var metadata = new Metadata()
+                    .put("source", file.getAbsolutePath())
+                    .put("chunk", String.valueOf(i + 1))
+                    .put("type", chunk.type().name())
+                    .put("section", chunk.sectionPath());
+
+            segments.add(TextSegment.from(chunk.text(), metadata));
+        }
+
+        // Embed the segments
+        var embeddings = embeddingModel.embedAll(segments);
+
+        // Print segments and metadata
+        for (int i = 0; LOGGER.isLoggable(DEBUG) && i < segments.size(); i++) {
+            TextSegment segment = segments.get(i);
+            LOGGER.log(DEBUG, "Chunk {0}: \n {1} \n", i - 1, segment.text());
+            LOGGER.log(DEBUG, "Metadata: {0}", segment.metadata());
+            LOGGER.log(DEBUG, "Embedding vector size:  {0}", embeddings.content().get(i).vector().length);
+            LOGGER.log(DEBUG, "---");
+        }
+
+        embeddingStore.addAll(embeddings.content(), segments);
     }
 
     public void clear() {

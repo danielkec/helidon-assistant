@@ -10,7 +10,7 @@ server:
 
 langchain4j:
   oci-gen-ai:
-    chat-model:
+    streaming-chat-model:
       enabled: true
       region: "eu-frankfurt-1"
       compartment-id: "ocid1.tenancy.oc1..aaaaaaaaonou3anbsghdg723hfoodyj3y6gmx3kqma5dcou4n2fh2setk6ta"

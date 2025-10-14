@@ -1,5 +1,8 @@
 package net.dmitrykornilov.helidon.assistant;
 
+import java.time.Duration;
+import java.time.Instant;
+
 import io.helidon.config.Config;
 import io.helidon.http.Header;
 import io.helidon.http.HeaderNames;
@@ -10,6 +13,7 @@ import io.helidon.service.registry.Services;
 import io.helidon.webserver.WebServer;
 import io.helidon.webserver.http.HttpRouting;
 
+import net.dmitrykornilov.helidon.assistant.rag.DocsIngestor;
 import net.dmitrykornilov.helidon.assistant.rest.ChatBotService;
 import net.dmitrykornilov.helidon.assistant.rest.IngestService;
 
@@ -22,6 +26,16 @@ public class ApplicationMain {
         LogConfig.configureRuntime();
 
         var config = Services.get(Config.class);
+
+        var startTime = Instant.now();
+
+        var ingestor = Services.get(DocsIngestor.class);
+        ingestor.clear();
+        ingestor.ingest((done, total) -> {
+            System.out.printf("\r Ingesting RAG [%s%s] %d/%d", "=".repeat(done), " ".repeat(total - done), done, total);
+        });
+        System.out.println();
+        System.out.println("Ingestion took " + Duration.between(startTime, Instant.now()));
 
         WebServer.builder()
                 .config(config.get("server"))

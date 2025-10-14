@@ -227,11 +227,11 @@
               break;
           }
           if (progressBar.max === 100000) {
-              // max progress bar value is sent as first number
-              progressBar.max = value;
+              // set max progress bar value
+              progressBar.max = parseInt(value.split('/')[1]);
               continue;
           }
-          progressBar.value = value;
+          progressBar.value = parseInt(value.split('/')[0]);
       }
   }
 
