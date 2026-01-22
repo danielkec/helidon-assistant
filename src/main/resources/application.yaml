@@ -8,18 +8,18 @@ langchain4j:
 #      enabled: true
       api-key: "demo"
       model-name: "gpt-4o-mini"
-  oracle-genai:
+  oci-gen-ai:
     chat-model:
       enabled: true
-      compartment-id: "ocid1.tenancy.oc1..aaaaaaaaonou3anbsghdg723hfoodyj3y6gmx3kqma5dcou4n2fh2setk6ta"
-      chat-model-id: "ocid1.generativeaimodel.oc1.eu-frankfurt-1.amaaaaaask7dceya4tdabclcsqbc3yj2mozvvqoq5ccmliv3354hfu3mx6bq"
+      model-name: google.gemini-2.5-pro
+      compartment-id: "ocid1.tenancy.oc1..aaaaaaaaxilnwwvabfgujrf7ymnkwhfykiaq3qsoxotd5hd53rm3hpclzeaa"
+      region: us-phoenix-1
+
   rag:
     embedding-store-content-retriever:
       enabled: true
       max-results: 10
       min-score: 0.6
-      embedding-model: "@default"
-      embedding-store: "@default"
 
 app:
   root: "/home/daniel/idp/ora/helidon/helidon-4/docs/src/main/asciidoc"
