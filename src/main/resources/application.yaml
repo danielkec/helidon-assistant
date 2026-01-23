@@ -1,21 +1,56 @@
 server:
   host: "0.0.0.0"
   port: 8080
+  features:
+    static-content:
+      classpath:
+        - context: "/ui"
+          location: "/WEB"
+          welcome: "index.html"
 
 langchain4j:
-  open-ai:
-    chat-model:
+  # Optional common configuration for all models from the provider
+  providers:
+    open-ai:
+      api-key: "${OPEN_AI_TOKEN}"
+
+  models:
+    openai-cheap-model:
+      provider: open-ai
       enabled: true
-      api-key: "demo"
+      # api-key is in the common provider section
       model-name: "gpt-4o-mini"
-  rag:
-    embedding-store-content-retriever:
+
+    gemini-flash-model:
+      provider: google-gemini
       enabled: true
+      # Or it can be directly in model config
+      api-key: "${GEMINI_TOKEN}"
+      model-name: "gemini-3-flash-preview"
+
+  embedding-stores:
+    se-embedding-store:
+      provider: helidon
+    mp-embedding-store:
+      provider: helidon
+
+  content-retrievers:
+    se-content-retriever:
+      provider: helidon
       max-results: 10
       min-score: 0.6
-      embedding-model: "@default"
-      embedding-store: "@default"
+      embedding-model: all-mini-lm-l6v2-embedding-model
+      embedding-store: se-embedding-store
+
+    mp-content-retriever:
+      provider: helidon
+      max-results: 10
+      min-score: 0.6
+      embedding-model: all-mini-lm-l6v2-embedding-model
+      embedding-store: mp-embedding-store
 
 app:
-  root: "//home/dmitry/github/helidon/docs/src/main/asciidoc/mp"
+  docs-path:
+    se: /home/daniel/idp/ora/helidon/helidon-4/docs/src/main/asciidoc/se
+    mp: /home/daniel/idp/ora/helidon/helidon-4/docs/src/main/asciidoc/mp
   inclusions: "*.adoc"

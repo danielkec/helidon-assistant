@@ -3,6 +3,7 @@
 
 # Maven
 target/
+helidon-snapshot/
 .m2/
 
 # Package Files #
