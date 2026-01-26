@@ -24,6 +24,7 @@ import dev.langchain4j.service.V;
 
 @Ai.Agent("helidon-mp-expert")
 @Ai.ChatModel("openai-cheap-model")
+@Ai.ContentRetriever("mp-content-retriever")
 public interface HelidonMpExpert {
 
     @UserMessage("""

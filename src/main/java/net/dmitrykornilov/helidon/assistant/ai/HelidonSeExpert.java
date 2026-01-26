@@ -24,6 +24,7 @@ import dev.langchain4j.service.V;
 
 @Ai.Agent("helidon-se-expert")
 @Ai.ChatModel("gemini-flash-model")
+@Ai.ContentRetriever("mp-content-retriever")
 public interface HelidonSeExpert {
 
     @UserMessage("""
