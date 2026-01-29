@@ -1,5 +1,6 @@
 package net.dmitrykornilov.helidon.assistant.rag;
 
+import java.io.File;
 import java.lang.System.Logger;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.concurrent.Executors;
 
 import io.helidon.common.features.api.HelidonFlavor;
 import io.helidon.config.Config;
+import io.helidon.config.ConfigException;
 import io.helidon.service.registry.Service;
 
 import dev.langchain4j.data.document.Metadata;
@@ -54,16 +56,19 @@ public class DocsIngestor {
     public void ingest(HelidonFlavor flavor) {
         // Get files to process
         var appConfig = config.get("app");
-        var root = appConfig.get("docs-path").get(flavor.name().toLowerCase()).asString().orElseThrow();
+        var root = appConfig.get("helidon-repo-path")
+                .as(Path.class)
+                .map(p -> p.resolve("docs", "src", "main", "asciidoc"))
+                .orElseThrow(() -> new ConfigException("Missing app.helidon-repo-path property with path to Helidon project dir"));
         var inclusions = appConfig.get("inclusions").asList(String.class).orElse(Collections.emptyList());
         var exclusions = appConfig.get("exclusions").asList(String.class).orElse(Collections.emptyList());
-        var files = FileLister.listFiles(root, exclusions, inclusions);
+        var files = FileLister.listFiles(root.resolve(flavor.name().toLowerCase()).toAbsolutePath().toString(), exclusions, inclusions);
 
         // Process files
         var processor = new AsciiDocPreprocessor();
         var grouper = new ChunkGrouper(1000);
         for (Path path : files) {
-            var chunks = processor.extractChunks(path.toFile());
+            var chunks = processor.extractChunks(path.toFile(), root, flavor);
             var groupedChunks = grouper.groupChunks(chunks);
 
             // Convert to LangChain4J TextSegments with metadata
@@ -77,6 +82,10 @@ public class DocsIngestor {
                         .put("section", chunk.sectionPath());
 
                 segments.add(TextSegment.from(chunk.text(), metadata));
+            }
+
+            if (segments.isEmpty()) {
+                continue;
             }
 
             // Embed the segments

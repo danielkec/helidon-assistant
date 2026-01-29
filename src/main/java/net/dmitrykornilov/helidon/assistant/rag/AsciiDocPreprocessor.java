@@ -1,11 +1,23 @@
 package net.dmitrykornilov.helidon.assistant.rag;
 
-import org.asciidoctor.*;
-import org.asciidoctor.ast.*;
-
 import java.io.File;
-import java.util.*;
+import java.nio.file.Path;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Deque;
 import java.util.List;
+
+import io.helidon.common.features.api.HelidonFlavor;
+
+import org.asciidoctor.Asciidoctor;
+import org.asciidoctor.Attributes;
+import org.asciidoctor.Options;
+import org.asciidoctor.SafeMode;
+import org.asciidoctor.ast.ListItem;
+import org.asciidoctor.ast.Section;
+import org.asciidoctor.ast.StructuralNode;
+import org.asciidoctor.ast.Table;
 
 public class AsciiDocPreprocessor {
 
@@ -15,9 +27,26 @@ public class AsciiDocPreprocessor {
         this.asciidoctor = Asciidoctor.Factory.create();
     }
 
-    public List<Chunk> extractChunks(File adocFile) {
+    public List<Chunk> extractChunks(File adocFile, Path rootDir, HelidonFlavor flavor) {
+        var flavorLc = flavor.name().toLowerCase();
+        var flavorUc = flavor.name().toUpperCase();
+        var rootDirPath = rootDir.toAbsolutePath();
         var options = Options.builder()
                 .baseDir(adocFile.getParentFile()) // enables include:: to resolve
+                .attributes(Attributes.builder()
+                                    .attribute("sourcedir", rootDir.getParent()
+                                            .resolve("java", "io", "helidon", "docs").toAbsolutePath().toString())
+                                    .attribute("flavor-lc", flavorLc)
+                                    .attribute("flavor-uc", flavorUc)
+                                    .attribute("health-page",
+                                               String.format("%s/%s/health.adoc", rootDirPath, flavorLc))
+                                    .attribute("metrics-page",
+                                               String.format("%s/%s/metrics/metrics.adoc", rootDirPath, flavorLc))
+                                    .attribute("openapi-page",
+                                               String.format("%s/%s/openapi/openapi.adoc", rootDirPath, flavorLc))
+                                    .attribute("tracing-page",
+                                               String.format("%s/%s/tracing.adoc", rootDirPath, flavorLc))
+                                    .build())
                 .safe(SafeMode.UNSAFE)             // allows full access (use cautiously)
                 .build();
 

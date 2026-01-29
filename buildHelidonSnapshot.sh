@@ -9,7 +9,5 @@ cd helidon
 mvn install -T4 -DskipTests -Dmaven.javadoc.skip=true
 
 printf "app:
- docs-path:
-   se: $(pwd)/docs/src/main/asciidoc/se
-   mp: $(pwd)/docs/src/main/asciidoc/mp
+ helidon-repo-path: $(pwd)
  inclusions: \"*.adoc\"";

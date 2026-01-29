@@ -50,7 +50,5 @@ langchain4j:
       embedding-store: mp-embedding-store
 
 app:
-  docs-path:
-    se: /home/daniel/idp/ora/helidon/helidon-4/docs/src/main/asciidoc/se
-    mp: /home/daniel/idp/ora/helidon/helidon-4/docs/src/main/asciidoc/mp
+  helidon-repo-path: /home/daniel/idp/ora/helidon/helidon-4
   inclusions: "*.adoc"
