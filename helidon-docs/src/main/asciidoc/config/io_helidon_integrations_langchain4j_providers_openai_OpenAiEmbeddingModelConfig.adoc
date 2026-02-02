@@ -1,0 +1,68 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.langchain4j.providers.openai.OpenAiEmbeddingModelConfig
+:keywords: helidon, config, io.helidon.integrations.langchain4j.providers.openai.OpenAiEmbeddingModelConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.langchain4j.providers.openai.OpenAiEmbeddingModelConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= OpenAiEmbeddingModelConfig (integrations.langchain4j.providers.openai) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.langchain4j.providers.openai/io/helidon/integrations/langchain4j/providers/openai/OpenAiEmbeddingModelConfig.html[io.helidon.integrations.langchain4j.providers.openai.OpenAiEmbeddingModelConfig]
+
+
+This is a standalone configuration type, prefix from configuration root: `langchain4j.providers.open-ai`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`api-key` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.apiKey(java.lang.String)
+|`base-url` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.baseUrl(java.lang.String)
+|`custom-headers` |Map&lt;string, string&gt; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.customHeaders(java.util.Map)
+|`custom-query-params` |Map&lt;string, string&gt; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.customQueryParams(java.util.Map)
+|`dimensions` |int |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.dimensions(java.lang.Integer)
+|`enabled` |boolean |`true` |If set to `false`, OpenAiEmbeddingModel will not be available even if configured.
+|`encoding-format` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.encodingFormat(java.lang.String)
+|`http-client-builder` |HttpClientBuilder |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.httpClientBuilder(dev.langchain4j.http.client.HttpClientBuilder)
+|`log-requests` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.logRequests(java.lang.Boolean)
+|`log-responses` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.logResponses(java.lang.Boolean)
+|`logger` |Logger |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.logger(org.slf4j.Logger)
+|`max-retries` |int |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.maxRetries(java.lang.Integer)
+|`max-segments-per-batch` |int |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.maxSegmentsPerBatch(java.lang.Integer)
+|`model-name` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.modelName(java.lang.String)
+|`organization-id` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.organizationId(java.lang.String)
+|`project-id` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.projectId(java.lang.String)
+|`timeout` |Duration |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.timeout(java.time.Duration)
+|`user` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiEmbeddingModel.OpenAiEmbeddingModelBuilder.user(java.lang.String)
+
+|===
+
+// end::config[]

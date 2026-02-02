@@ -1,0 +1,85 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.langchain4j.providers.openai.OpenAiStreamingChatModelConfig
+:keywords: helidon, config, io.helidon.integrations.langchain4j.providers.openai.OpenAiStreamingChatModelConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.langchain4j.providers.openai.OpenAiStreamingChatModelConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= OpenAiStreamingChatModelConfig (integrations.langchain4j.providers.openai) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.langchain4j.providers.openai/io/helidon/integrations/langchain4j/providers/openai/OpenAiStreamingChatModelConfig.html[io.helidon.integrations.langchain4j.providers.openai.OpenAiStreamingChatModelConfig]
+
+
+This is a standalone configuration type, prefix from configuration root: `langchain4j.providers.open-ai`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`api-key` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.apiKey(java.lang.String)
+|`base-url` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.baseUrl(java.lang.String)
+|`custom-headers` |Map&lt;string, string&gt; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.customHeaders(java.util.Map)
+|`custom-parameters` |Map&lt;string, Object&gt; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.customParameters(java.util.Map)
+|`custom-query-params` |Map&lt;string, string&gt; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.customQueryParams(java.util.Map)
+|`default-request-parameters` |ChatRequestParameters |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.defaultRequestParameters(dev.langchain4j.model.chat.request.ChatRequestParameters)
+|`enabled` |boolean |`true` |If set to `false`, OpenAiStreamingChatModel will not be available even if configured.
+|`frequency-penalty` |double |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.frequencyPenalty(java.lang.Double)
+|`http-client-builder` |HttpClientBuilder |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.httpClientBuilder(dev.langchain4j.http.client.HttpClientBuilder)
+|`listeners` |ChatModelListener[&#93; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.listeners(java.util.List)
+|`log-requests` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.logRequests(java.lang.Boolean)
+|`log-responses` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.logResponses(java.lang.Boolean)
+|`logger` |Logger |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.logger(org.slf4j.Logger)
+|`logit-bias` |Map&lt;string, int&gt; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.logitBias(java.util.Map)
+|`max-completion-tokens` |int |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.maxCompletionTokens(java.lang.Integer)
+|`max-tokens` |int |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.maxTokens(java.lang.Integer)
+|`metadata` |Map&lt;string, string&gt; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.metadata(java.util.Map)
+|`model-name` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.modelName(java.lang.String)
+|`organization-id` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.organizationId(java.lang.String)
+|`parallel-tool-calls` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.parallelToolCalls(java.lang.Boolean)
+|`presence-penalty` |double |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.presencePenalty(java.lang.Double)
+|`project-id` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.projectId(java.lang.String)
+|`reasoning-effort` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.reasoningEffort(java.lang.String)
+|`return-thinking` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.returnThinking(java.lang.Boolean)
+|`seed` |int |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.seed(java.lang.Integer)
+|`send-thinking` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.sendThinking(java.lang.Boolean)
+|`service-tier` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.serviceTier(java.lang.String)
+|`stop` |string[&#93; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.stop(java.util.List)
+|`store` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.store(java.lang.Boolean)
+|`strict-json-schema` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.strictJsonSchema(java.lang.Boolean)
+|`strict-tools` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.strictTools(java.lang.Boolean)
+|`temperature` |double |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.temperature(java.lang.Double)
+|`timeout` |Duration |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.timeout(java.time.Duration)
+|`top-p` |double |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.topP(java.lang.Double)
+|`user` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiStreamingChatModel.OpenAiStreamingChatModelBuilder.user(java.lang.String)
+
+|===
+
+// end::config[]

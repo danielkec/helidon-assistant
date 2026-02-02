@@ -56,9 +56,9 @@ public class DocsIngestor {
     public void ingest(HelidonFlavor flavor) {
         // Get files to process
         var appConfig = config.get("app");
-        var root = appConfig.get("helidon-repo-path")
+        var root = appConfig.get("helidon-docs-path")
                 .as(Path.class)
-                .map(p -> p.resolve("docs", "src", "main", "asciidoc"))
+                .map(p -> p.resolve("src", "main", "asciidoc"))
                 .orElseThrow(() -> new ConfigException("Missing app.helidon-repo-path property with path to Helidon project dir"));
         var inclusions = appConfig.get("inclusions").asList(String.class).orElse(Collections.emptyList());
         var exclusions = appConfig.get("exclusions").asList(String.class).orElse(Collections.emptyList());

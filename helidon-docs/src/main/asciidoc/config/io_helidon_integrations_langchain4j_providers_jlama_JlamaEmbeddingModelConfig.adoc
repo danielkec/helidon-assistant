@@ -1,0 +1,57 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.langchain4j.providers.jlama.JlamaEmbeddingModelConfig
+:keywords: helidon, config, io.helidon.integrations.langchain4j.providers.jlama.JlamaEmbeddingModelConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.langchain4j.providers.jlama.JlamaEmbeddingModelConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= JlamaEmbeddingModelConfig (integrations.langchain4j.providers.jlama) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.langchain4j.providers.jlama/io/helidon/integrations/langchain4j/providers/jlama/JlamaEmbeddingModelConfig.html[io.helidon.integrations.langchain4j.providers.jlama.JlamaEmbeddingModelConfig]
+
+
+This is a standalone configuration type, prefix from configuration root: `langchain4j.providers.jlama`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`auth-token` |string |{nbsp} |Generated from dev.langchain4j.model.jlama.JlamaEmbeddingModel.JlamaEmbeddingModelBuilder.authToken(java.lang.String)
+|`enabled` |boolean |`true` |If set to `false`, JlamaEmbeddingModel will not be available even if configured.
+|`model-cache-path` |Path |{nbsp} |Generated from dev.langchain4j.model.jlama.JlamaEmbeddingModel.JlamaEmbeddingModelBuilder.modelCachePath(java.nio.file.Path)
+|`pooling-type` |PoolingType (MODEL, AVG, MAX, SUM) |{nbsp} |Generated from dev.langchain4j.model.jlama.JlamaEmbeddingModel.JlamaEmbeddingModelBuilder.poolingType(com.github.tjake.jlama.model.functions.Generator.PoolingType)
+|`quantize-model-at-runtime` |boolean |{nbsp} |Generated from dev.langchain4j.model.jlama.JlamaEmbeddingModel.JlamaEmbeddingModelBuilder.quantizeModelAtRuntime(java.lang.Boolean)
+|`thread-count` |int |{nbsp} |Generated from dev.langchain4j.model.jlama.JlamaEmbeddingModel.JlamaEmbeddingModelBuilder.threadCount(java.lang.Integer)
+|`working-directory` |Path |{nbsp} |Generated from dev.langchain4j.model.jlama.JlamaEmbeddingModel.JlamaEmbeddingModelBuilder.workingDirectory(java.nio.file.Path)
+
+|===
+
+// end::config[]

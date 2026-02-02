@@ -1,0 +1,63 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.eureka.EurekaRegistrationServerFeature
+:keywords: helidon, config, io.helidon.integrations.eureka.EurekaRegistrationServerFeature
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.eureka.EurekaRegistrationServerFeature
+include::{rootdir}/includes/attributes.adoc[]
+
+= EurekaRegistrationServerFeature (integrations.eureka) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.eureka/io/helidon/integrations/eureka/EurekaRegistrationServerFeature.html[io.helidon.integrations.eureka.EurekaRegistrationServerFeature]
+
+
+[source,text]
+.Config key
+----
+eureka
+----
+
+
+This type provides the following service implementations:
+
+- `io.helidon.webserver.spi.ServerFeatureProvider`
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`enabled` |boolean |`true` |Whether this feature will be enabled.
+|`instance` |xref:{rootdir}/config/io_helidon_integrations_eureka_InstanceInfoConfig.adoc[InstanceInfoConfig] |`io.helidon.integrations.eureka.EurekaRegistrationConfigBlueprint.create()` |An InstanceInfoConfig describing the service instance to be registered.
+
+See InstanceInfoConfig
+|`weight` |double |`100.0` |The (zero or positive) io.helidon.common.Weighted weight of this instance.
+
+|===
+
+// end::config[]

@@ -1,0 +1,103 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.messaging.connectors.jms.JmsConfigBuilder
+:keywords: helidon, config, io.helidon.messaging.connectors.jms.JmsConfigBuilder
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.messaging.connectors.jms.JmsConfigBuilder
+include::{rootdir}/includes/attributes.adoc[]
+
+= JmsConfigBuilder (messaging.connectors.jms) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.messaging.connectors.jms/io/helidon/messaging/connectors/jms/JmsConfigBuilder.html[io.helidon.messaging.connectors.jms.JmsConfigBuilder]
+
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`acknowledge-mode` |AcknowledgeMode (AUTO_ACKNOWLEDGE, CLIENT_ACKNOWLEDGE, DUPS_OK_ACKNOWLEDGE) |`AUTO_ACKNOWLEDGE` |JMS acknowledgement mode.
+
+- *AUTO_ACKNOWLEDGE* Acknowledges automatically after message reception over JMS api.
+- *CLIENT_ACKNOWLEDGE* Message is acknowledged when
+org.eclipse.microprofile.reactive.messaging.Message.ack Message.ack() is invoked either manually or
+by org.eclipse.microprofile.reactive.messaging.Acknowledgment Acknowledgment policy.
+- *DUPS_OK_ACKNOWLEDGE* Messages are acknowledged lazily which can result in
+duplicate messages being delivered.
+
+Allowed values:
+
+- `AUTO_ACKNOWLEDGE`: Acknowledges automatically after message reception over JMS api.
+- `CLIENT_ACKNOWLEDGE`: Message is acknowledged when org.eclipse.microprofile.reactive.messaging.Message.ack is invoked either
+manually or by org.eclipse.microprofile.reactive.messaging.Acknowledgment policy.
+- `DUPS_OK_ACKNOWLEDGE`: Messages are acknowledged lazily which can result in duplicate messages being delivered.
+
+|`destination` |string |{nbsp} |Queue or topic name.
+|`jndi-initial-context-properties` |Map&lt;string, string&gt; |{nbsp} |Environment properties used for creating initial context java.naming.factory.initial, java.naming.provider.url.
+|`jndi-initial-factory` |string |{nbsp} |JNDI initial factory.
+|`jndi-jms-factory` |string |{nbsp} |JNDI name of JMS factory.
+|`jndi-provider-url` |string |{nbsp} |JNDI provider url.
+|`message-selector` |string |{nbsp} |JMS API message selector expression based on a subset of the SQL92.
+Expression can only access headers and properties, not the payload.
+
+- Type: string
+- Example: NewsType = ’Sports’ OR NewsType = ’Opinion’
+
+
+|`named-factory` |string |{nbsp} |To select from manually configured jakarta.jms.ConnectionFactory ConnectionFactories over
+{@link JmsConnector.JmsConnectorBuilder#connectionFactory(String, jakarta.jms.ConnectionFactory)
+JmsConnectorBuilder#connectionFactory()}.
+|`password` |string |{nbsp} |Password used for creating JMS connection.
+
+- Type: string
+
+
+|`period-executions` |long |`100` |Period for executing poll cycles in millis.
+|`poll-timeout` |long |`50` |Timeout for polling for next message in every poll cycle in millis.
+|`queue` |string |{nbsp} |Use supplied destination name and Type.QUEUE QUEUE as type.
+|`session-group-id` |string |{nbsp} |When multiple channels share same session-group-id,
+they share same JMS session.
+|`topic` |string |{nbsp} |Use supplied destination name and Type.TOPIC TOPIC as type.
+|`transacted` |boolean |`false` |Indicates whether the session will use a local transaction.
+|`type` |Type (QUEUE, TOPIC) |`QUEUE` |Specify if connection is Type.QUEUE queue  or Type.TOPIC topic.
+
+Allowed values:
+
+- `QUEUE`: Queue connection type, every message is consumed by one client only.
+- `TOPIC`: Topic connection type, every message is delivered to all subscribed clients.
+
+|`username` |string |{nbsp} |User name used for creating JMS connection.
+
+- Type: string
+
+
+
+|===
+
+// end::config[]

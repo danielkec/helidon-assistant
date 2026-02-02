@@ -15,38 +15,25 @@ Key Features:
 
 ## Getting Started
 
-### 1. Clone the Helidon Documentation
-
-First, clone the [Helidon GitHub repository](https://github.com/helidon-io/helidon) to a temporary location on your local machine.
-
-### 2. Configure the Application
-
-Update the project's `application.yaml` file to point to the Helidon documentation source, typically located at `{helidon_repo_root}/docs/src/main/asciidoc`. You can also define inclusion and exclusion filters as needed:
-
-```yaml
-app:
-  root: "//{helidon_repo_root}/docs/src/main/asciidoc"
-#  exclusions:
-  inclusions: "*.adoc"
+### 1. Clone agentic branch of Helidon Assistant.
+```bash
+git clone -b kec/agentic-assistant --single-branch git@github.com:danielkec/helidon-assistant.git
+cd helidon-assistant
 ```
-
-### 3. Build the Project
-
-Use Maven to build the application:
+### 2. Build locally Helidon snapshot with a working version of Lc4j agentic integration.
 
 ```bash
-mvn clean package
+bash ./buildHelidonSnapshot.sh
 ```
 
-### 4. Run the Application
-
-Launch the assistant with:
+### 3. Build and run Helidon Assistant itself 
+Ingestion is done before the server startup, it can take around 30 seconds.
 
 ```bash
-java -jar target/helidon-assistant.jar
+bash ./buildAndRun.sh
 ```
 
-### 5. Chat with the Assistant
+### 4. Chat with the Assistant
 
 Once the application is running, open your browser and navigate to [http://localhost:8080](http://localhost:8080) to start chatting with the Helidon Assistant.
 

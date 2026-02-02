@@ -1,0 +1,73 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.eureka.InstanceInfoConfig
+:keywords: helidon, config, io.helidon.integrations.eureka.InstanceInfoConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.eureka.InstanceInfoConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= InstanceInfoConfig (integrations.eureka) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.eureka/io/helidon/integrations/eureka/InstanceInfoConfig.html[io.helidon.integrations.eureka.InstanceInfoConfig]
+
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`appGroup` |string |`unknown` |The app group name.
+|`asgName` |string |{nbsp} |The ASG name.
+<abbr>ASG</abbr> stands for Auto Scaling Group.
+|`healthCheckUrl` |URI |{nbsp} |The health check URL.
+|`healthCheckUrlPath` |string |{nbsp} |The health check URL path (used if any health check URL is not explicitly set).
+|`homePageUrl` |URI |{nbsp} |The home page URL.
+|`homePageUrlPath` |string |`/` |The home page URL path (used if the homepage URL is not explicitly set).
+|`hostName` |string |{nbsp} |The hostname.
+|`instanceId` |string |{nbsp} |The instance id.
+|`ipAddr` |string |{nbsp} |The IP address.
+|`lease` |xref:{rootdir}/config/io_helidon_integrations_eureka_LeaseInfoConfig.adoc[LeaseInfoConfig] |`io.helidon.integrations.eureka.InstanceInfoConfigBlueprint.create()` |The LeaseInfoConfig.
+
+See LeaseInfoConfig
+|`metadata` |Map&lt;string, string&gt; |`@java.util.Map@.of()` |Metadata.
+|`name` |string |`unknown` |The app name.
+|`port` |xref:{rootdir}/config/io_helidon_integrations_eureka_PortInfoConfig.adoc[PortInfoConfig] |`io.helidon.integrations.eureka.InstanceInfoConfigBlueprint.create()` |(Non-secure) port information.
+|`secureHealthCheckUrl` |URI |{nbsp} |The secure health check URL.
+|`securePort` |xref:{rootdir}/config/io_helidon_integrations_eureka_PortInfoConfig.adoc[PortInfoConfig] |`io.helidon.integrations.eureka.InstanceInfoConfigBlueprint.create()` |Secure port information.
+|`secureVipAddress` |string |{nbsp} |The secure VIP address.
+<abbr>VIP</abbr> stands for Virtual IP.
+|`statusPageUrl` |URI |{nbsp} |The status page URL.
+|`statusPageUrlPath` |string |`/Status` |The status page URL path (used if status page URL is not explicitly set).
+|`traffic.enabled` |boolean |`true` |Whether traffic is enabled on startup (normally `true`).
+|`vipAddress` |string |{nbsp} |The VIP address.
+<abbr>VIP</abbr> stands for Virtual IP.
+
+|===
+
+// end::config[]

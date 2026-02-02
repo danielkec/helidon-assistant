@@ -1,0 +1,55 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.common.context.http.ContextRecordConfig
+:keywords: helidon, config, io.helidon.common.context.http.ContextRecordConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.common.context.http.ContextRecordConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= ContextRecordConfig (common.context.http) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.common.context.http/io/helidon/common/context/http/ContextRecordConfig.html[io.helidon.common.context.http.ContextRecordConfig]
+
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`array` |boolean |{nbsp} |Whether to treat the option as an array of strings.
+This would be read from the context as an array.
+|`classifier` |string |{nbsp} |String classifier of the value that will be used with io.helidon.common.context.Context.get(Object, Class).
+|`default-value` |string |{nbsp} |Default value to send if not configured in context.
+|`default-values` |string[&#93; |{nbsp} |Default values to send if not configured in context.
+In case default values is an empty array, it will not be sent over the network if not present in context.
+|`header` |HeaderName |{nbsp} |Name of the header to use when sending the context value over the network.
+
+|===
+
+// end::config[]

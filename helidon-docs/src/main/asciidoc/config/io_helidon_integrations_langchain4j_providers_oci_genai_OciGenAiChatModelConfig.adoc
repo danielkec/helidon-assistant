@@ -1,0 +1,64 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.langchain4j.providers.oci.genai.OciGenAiChatModelConfig
+:keywords: helidon, config, io.helidon.integrations.langchain4j.providers.oci.genai.OciGenAiChatModelConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.langchain4j.providers.oci.genai.OciGenAiChatModelConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= OciGenAiChatModelConfig (integrations.langchain4j.providers.oci.genai) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.langchain4j.providers.oraclegenai/io/helidon/integrations/langchain4j/providers/oci/genai/OciGenAiChatModelConfig.html[io.helidon.integrations.langchain4j.providers.oci.genai.OciGenAiChatModelConfig]
+
+
+This is a standalone configuration type, prefix from configuration root: `langchain4j.providers.oci-gen-ai`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`default-request-parameters` |ChatRequestParameters |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.defaultRequestParameters(dev.langchain4j.model.chat.request.ChatRequestParameters)
+|`enabled` |boolean |`true` |If set to `false`, OciGenAiChatModel will not be available even if configured.
+|`frequency-penalty` |double |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.frequencyPenalty(java.lang.Double)
+|`listeners` |ChatModelListener[&#93; |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.listeners(java.util.List)
+|`log-probs` |int |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseGenericChatModel.Builder.logProbs(java.lang.Integer)
+|`max-tokens` |int |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.maxTokens(java.lang.Integer)
+|`num-generations` |int |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseGenericChatModel.Builder.numGenerations(java.lang.Integer)
+|`presence-penalty` |double |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.presencePenalty(java.lang.Double)
+|`seed` |int |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.seed(java.lang.Integer)
+|`serving-type` |ServingType (OnDemand, Dedicated) |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.servingType(com.oracle.bmc.generativeaiinference.model.ServingMode.ServingType)
+|`stop` |string[&#93; |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.stop(java.util.List)
+|`temperature` |double |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.temperature(java.lang.Double)
+|`top-k` |int |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.topK(java.lang.Integer)
+|`top-p` |double |{nbsp} |Generated from dev.langchain4j.community.model.oracle.oci.genai.BaseChatModel.Builder.topP(java.lang.Double)
+
+|===
+
+// end::config[]

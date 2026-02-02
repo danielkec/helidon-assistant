@@ -1,0 +1,61 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.telemetry.otelconfig.OpenTelemetryTracingConfig
+:keywords: helidon, config, io.helidon.telemetry.otelconfig.OpenTelemetryTracingConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.telemetry.otelconfig.OpenTelemetryTracingConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= OpenTelemetryTracingConfig (telemetry.otelconfig) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.telemetry.otelconfig/io/helidon/telemetry/otelconfig/OpenTelemetryTracingConfig.html[io.helidon.telemetry.otelconfig.OpenTelemetryTracingConfig]
+
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`attributes.booleans` |Map&lt;string, boolean&gt; |{nbsp} |Boolean attributes.
+|`attributes.doubles` |Map&lt;string, double&gt; |{nbsp} |Double attributes.
+|`attributes.longs` |Map&lt;string, long&gt; |{nbsp} |Long attributes.
+|`attributes.strings` |Map&lt;string, string&gt; |{nbsp} |String attributes.
+|`exporters` |Map&lt;string, SpanExporter&gt; |{nbsp} |Span exporters.
+
+The key in the map is a unique name--of the user's choice--for the exporter config settings.
+The SpanProcessorConfig.exporters() config setting for a processor config specifies zero
+or more of these names to associate the exporters built from the exporter configs with the processor
+built from the processor config.
+|`processors` |xref:{rootdir}/config/io_helidon_telemetry_otelconfig_SpanProcessorConfig.adoc[SpanProcessorConfig[&#93;] |{nbsp} |Settings for span processors.
+|`sampler` |Sampler |{nbsp} |Tracing sampler.
+|`span-limits` |SpanLimits |{nbsp} |Tracing span limits.
+
+|===
+
+// end::config[]

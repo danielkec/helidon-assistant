@@ -1,0 +1,57 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.langchain4j.providers.oracle.IvfIndexConfig
+:keywords: helidon, config, io.helidon.integrations.langchain4j.providers.oracle.IvfIndexConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.langchain4j.providers.oracle.IvfIndexConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= IvfIndexConfig (integrations.langchain4j.providers.oracle) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.langchain4j.providers.oracle/io/helidon/integrations/langchain4j/providers/oracle/IvfIndexConfig.html[io.helidon.integrations.langchain4j.providers.oracle.IvfIndexConfig]
+
+
+This is a standalone configuration type, prefix from configuration root: `langchain4j.providers.oracle.ivf-index`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`create-option` |CreateOption (CREATE_NONE, CREATE_IF_NOT_EXISTS, CREATE_OR_REPLACE) |{nbsp} |Generated from dev.langchain4j.store.embedding.oracle.IndexBuilder.createOption(dev.langchain4j.store.embedding.oracle.CreateOption)
+|`degree-of-parallelism` |int |{nbsp} |Generated from dev.langchain4j.store.embedding.oracle.IVFIndexBuilder.degreeOfParallelism(int)
+|`min-vectors-per-partition` |int |{nbsp} |Generated from dev.langchain4j.store.embedding.oracle.IVFIndexBuilder.minVectorsPerPartition(int)
+|`name` |string |{nbsp} |Generated from dev.langchain4j.store.embedding.oracle.IndexBuilder.name(java.lang.String)
+|`neighbor-partitions` |int |{nbsp} |Generated from dev.langchain4j.store.embedding.oracle.IVFIndexBuilder.neighborPartitions(int)
+|`sample-per-partition` |int |{nbsp} |Generated from dev.langchain4j.store.embedding.oracle.IVFIndexBuilder.samplePerPartition(int)
+|`target-accuracy` |int |{nbsp} |Generated from dev.langchain4j.store.embedding.oracle.IVFIndexBuilder.targetAccuracy(int)
+
+|===
+
+// end::config[]

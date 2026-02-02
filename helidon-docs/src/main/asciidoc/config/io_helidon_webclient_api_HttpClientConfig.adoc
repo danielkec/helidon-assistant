@@ -1,0 +1,111 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.webclient.api.HttpClientConfig
+:keywords: helidon, config, io.helidon.webclient.api.HttpClientConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.webclient.api.HttpClientConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= HttpClientConfig (webclient.api) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.webclient.api/io/helidon/webclient/api/HttpClientConfig.html[io.helidon.webclient.api.HttpClientConfig]
+
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`base-uri` |ClientUri |{nbsp} |Base uri used by the client in all requests.
+|`connect-timeout` |Duration |{nbsp} |Connect timeout.
+
+See io.helidon.common.socket.SocketOptions.connectTimeout()
+|`connection-cache-size` |int |`256` |Maximal size of the connection cache for a single connection key.
+A connection key is formed by the scheme, host, port, TLS configuration, DNS resolver, DNS address lookup, and proxy.
+
+For most HTTP protocols, we may cache connections to various endpoints for keep alive (or stream reuse in case of HTTP/2).
+This option limits the size. Setting this number lower than the "usual" number of target services will cause connections
+to be closed and reopened frequently.
+|`content-encoding` |xref:{rootdir}/config/io_helidon_http_encoding_ContentEncodingContext.adoc[ContentEncodingContext] |{nbsp} |Configure the listener specific io.helidon.http.encoding.ContentEncodingContext.
+This method discards all previously registered ContentEncodingContext.
+If no content encoding context is registered, default encoding context is used.
+|`cookie-manager` |xref:{rootdir}/config/io_helidon_webclient_api_WebClientCookieManager.adoc[WebClientCookieManager] |{nbsp} |WebClient cookie manager.
+|`default-headers` |Map&lt;string, string&gt; |{nbsp} |Default headers to be used in every request from configuration.
+|`follow-redirects` |boolean |`true` |Whether to follow redirects.
+|`keep-alive` |boolean |`true` |Determines if connection keep alive is enabled (NOT socket keep alive, but HTTP connection keep alive, to re-use
+the same connection for multiple requests).
+
+See io.helidon.common.socket.SocketOptions.socketKeepAlive()
+|`max-in-memory-entity` |int |`131072` |If the entity is expected to be smaller that this number of bytes, it would be buffered in memory to optimize performance.
+If bigger, streaming will be used.
+
+Note that for some entity types we cannot use streaming, as they are already fully in memory (String, byte[]), for such
+cases, this option is ignored. Default is 128Kb.
+|`max-redirects` |int |`10` |Max number of followed redirects.
+This is ignored if followRedirects() option is `false`.
+|`media-context` |xref:{rootdir}/config/io_helidon_http_media_MediaContext.adoc[MediaContext] |`create()` |Configure the listener specific io.helidon.http.media.MediaContext.
+This method discards all previously registered MediaContext.
+If no media context is registered, default media context is used.
+|`media-type-parser-mode` |ParserMode (STRICT, RELAXED) |`ParserMode.STRICT` |Configure media type parsing mode for HTTP `Content-Type` header.
+|`properties` |Map&lt;string, string&gt; |{nbsp} |Properties configured for this client. These properties are propagated through client request, to be used by
+services (and possibly for other purposes).
+|`proxy` |xref:{rootdir}/config/io_helidon_webclient_api_Proxy.adoc[Proxy] |{nbsp} |Proxy configuration to be used for requests.
+|`read-continue-timeout` |Duration |`PT1S` |Socket 100-Continue read timeout. Default is 1 second.
+This read timeout is used when 100-Continue is sent by the client, before it sends an entity.
+|`read-timeout` |Duration |{nbsp} |Read timeout.
+
+See io.helidon.common.socket.SocketOptions.readTimeout()
+|`relative-uris` |boolean |`false` |Can be set to `true` to force the use of relative URIs in all requests,
+regardless of the presence or absence of proxies or no-proxy lists.
+|`send-expect-continue` |boolean |`true` |Whether Expect-100-Continue header is sent to verify server availability before sending an entity.
+
+Defaults to `true`.
+
+|`services` |io.helidon.webclient.spi.WebClientService[&#93; (service provider interface) |{nbsp} |WebClient services.
+|`share-connection-cache` |boolean |`true` |Whether to share connection cache between all the WebClient instances in JVM.
+|`socket-options` |xref:{rootdir}/config/io_helidon_common_socket_SocketOptions.adoc[SocketOptions] |{nbsp} |Socket options for connections opened by this client.
+If there is a value explicitly configured on this type and on the socket options,
+the one configured on this type's builder will win:
+
+- readTimeout()
+- connectTimeout()
+
+
+|`tls` |xref:{rootdir}/config/io_helidon_common_tls_Tls.adoc[Tls] |{nbsp} |TLS configuration for any TLS request from this client.
+TLS can also be configured per request.
+TLS is used when the protocol is set to `https`.
+|`write-buffer-size` |int |`4096` |Buffer size used when writing data to the underlying socket on a client TCP
+connection. A value that is less or equal to 1 can be set to disable buffering
+at this level. Note that if writing data to the socket in small chunks, they
+may not be delivered to the network immediately due to Nagle's algorithm (i.e.,
+if TCP_NO_DELAY is turned off).
+
+|===
+
+// end::config[]

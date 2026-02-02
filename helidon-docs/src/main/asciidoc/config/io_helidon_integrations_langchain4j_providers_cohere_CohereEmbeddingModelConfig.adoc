@@ -1,0 +1,60 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.langchain4j.providers.cohere.CohereEmbeddingModelConfig
+:keywords: helidon, config, io.helidon.integrations.langchain4j.providers.cohere.CohereEmbeddingModelConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.langchain4j.providers.cohere.CohereEmbeddingModelConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= CohereEmbeddingModelConfig (integrations.langchain4j.providers.cohere) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.langchain4j.providers.cohere/io/helidon/integrations/langchain4j/providers/cohere/CohereEmbeddingModelConfig.html[io.helidon.integrations.langchain4j.providers.cohere.CohereEmbeddingModelConfig]
+
+
+This is a standalone configuration type, prefix from configuration root: `langchain4j.providers.cohere`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`api-key` |string |{nbsp} |Generated from dev.langchain4j.model.cohere.CohereEmbeddingModel.CohereEmbeddingModelBuilder.apiKey(java.lang.String)
+|`base-url` |string |{nbsp} |Generated from dev.langchain4j.model.cohere.CohereEmbeddingModel.CohereEmbeddingModelBuilder.baseUrl(java.lang.String)
+|`enabled` |boolean |`true` |If set to `false`, CohereEmbeddingModel will not be available even if configured.
+|`input-type` |string |{nbsp} |Generated from dev.langchain4j.model.cohere.CohereEmbeddingModel.CohereEmbeddingModelBuilder.inputType(java.lang.String)
+|`log-requests` |boolean |{nbsp} |Generated from dev.langchain4j.model.cohere.CohereEmbeddingModel.CohereEmbeddingModelBuilder.logRequests(java.lang.Boolean)
+|`log-responses` |boolean |{nbsp} |Generated from dev.langchain4j.model.cohere.CohereEmbeddingModel.CohereEmbeddingModelBuilder.logResponses(java.lang.Boolean)
+|`logger` |Logger |{nbsp} |Generated from dev.langchain4j.model.cohere.CohereEmbeddingModel.CohereEmbeddingModelBuilder.logger(org.slf4j.Logger)
+|`max-segments-per-batch` |int |{nbsp} |Generated from dev.langchain4j.model.cohere.CohereEmbeddingModel.CohereEmbeddingModelBuilder.maxSegmentsPerBatch(java.lang.Integer)
+|`model-name` |string |{nbsp} |Generated from dev.langchain4j.model.cohere.CohereEmbeddingModel.CohereEmbeddingModelBuilder.modelName(java.lang.String)
+|`timeout` |Duration |{nbsp} |Generated from dev.langchain4j.model.cohere.CohereEmbeddingModel.CohereEmbeddingModelBuilder.timeout(java.time.Duration)
+
+|===
+
+// end::config[]

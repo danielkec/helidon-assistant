@@ -1,0 +1,65 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.http.media.jsonb.JsonbSupport
+:keywords: helidon, config, io.helidon.http.media.jsonb.JsonbSupport
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.http.media.jsonb.JsonbSupport
+include::{rootdir}/includes/attributes.adoc[]
+
+= JsonbSupport (http.media.jsonb) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.http.media.jsonb/io/helidon/http/media/jsonb/JsonbSupport.html[io.helidon.http.media.jsonb.JsonbSupport]
+
+
+[source,text]
+.Config key
+----
+jsonb
+----
+
+
+This type provides the following service implementations:
+
+- `io.helidon.http.media.spi.MediaSupportProvider`
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`boolean-properties` |Map&lt;string, boolean&gt; |{nbsp} |Jsonb `boolean` configuration properties.
+Properties are being ignored if specific Jsonb is set.
+|`class-properties` |Map&lt;string, Class&gt; |{nbsp} |Jsonb Class configuration properties.
+Properties are being ignored if specific Jsonb is set.
+|`name` |string |`jsonb` |Name of the support. Default value is `jsonb`.
+|`properties` |Map&lt;string, string&gt; |{nbsp} |Jsonb String configuration properties.
+Properties are being ignored if specific Jsonb is set.
+
+|===
+
+// end::config[]

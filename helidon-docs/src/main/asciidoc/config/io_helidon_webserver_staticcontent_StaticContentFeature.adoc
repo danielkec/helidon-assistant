@@ -1,0 +1,82 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.webserver.staticcontent.StaticContentFeature
+:keywords: helidon, config, io.helidon.webserver.staticcontent.StaticContentFeature
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.webserver.staticcontent.StaticContentFeature
+include::{rootdir}/includes/attributes.adoc[]
+
+= StaticContentFeature (webserver.staticcontent) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.webserver.staticcontent/io/helidon/webserver/staticcontent/StaticContentFeature.html[io.helidon.webserver.staticcontent.StaticContentFeature]
+
+
+[source,text]
+.Config key
+----
+static-content
+----
+
+
+This type provides the following service implementations:
+
+- `io.helidon.webserver.spi.ServerFeatureProvider`
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`classpath` |xref:{rootdir}/config/io_helidon_webserver_staticcontent_ClasspathHandlerConfig.adoc[ClasspathHandlerConfig[&#93;] |{nbsp} |List of classpath based static content handlers.
+|`content-types` |Map&lt;string, MediaType&gt; |{nbsp} |Maps a filename extension to the response content type.
+To have a system-wide configuration, you can use the service loader SPI
+io.helidon.common.media.type.spi.MediaTypeDetector.
+
+This method can override io.helidon.common.media.type.MediaTypes detection
+for a specific static content handler.
+
+Handler will use a union of configuration defined here, and on the handler
+here when used from configuration.
+|`enabled` |boolean |`true` |Whether this feature is enabled, defaults to `true`.
+|`memory-cache` |xref:{rootdir}/config/io_helidon_webserver_staticcontent_MemoryCache.adoc[MemoryCache] |{nbsp} |Memory cache shared by the whole feature.
+If not configured, files are not cached in memory (except for explicitly marked files/resources in each section).
+|`path` |xref:{rootdir}/config/io_helidon_webserver_staticcontent_FileSystemHandlerConfig.adoc[FileSystemHandlerConfig[&#93;] |{nbsp} |List of file system based static content handlers.
+|`sockets` |string[&#93; |{nbsp} |Sockets names (listeners) that will host static content handlers, defaults to all configured sockets.
+Default socket name is `@default`.
+
+This configures defaults for all handlers.
+|`temporary-storage` |xref:{rootdir}/config/io_helidon_webserver_staticcontent_TemporaryStorage.adoc[TemporaryStorage] |{nbsp} |Temporary storage to use across all classpath handlers.
+If not defined, a default one will be created.
+|`weight` |double |`95.0` |Weight of the static content feature. Defaults to
+`95.0`.
+|`welcome` |string |{nbsp} |Welcome-file name. Default for all handlers.
+By default, we do not serve default files.
+
+|===
+
+// end::config[]

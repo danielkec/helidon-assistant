@@ -1,0 +1,58 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.telemetry.otelconfig.SpanExporterConfig
+:keywords: helidon, config, io.helidon.telemetry.otelconfig.SpanExporterConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.telemetry.otelconfig.SpanExporterConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= SpanExporterConfig (telemetry.otelconfig) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.telemetry.otelconfig/io/helidon/telemetry/otelconfig/SpanExporterConfig.html[io.helidon.telemetry.otelconfig.SpanExporterConfig]
+
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`type` |ExporterType (OTLP, ZIPKIN, CONSOLE, LOGGING_OTLP) |`ExporterType.DEFAULT` |Span exporter type.
+
+Allowed values:
+
+- `OTLP`: OpenTelemetry Protocol io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter and
+io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter.
+- `ZIPKIN`: Zipkin io.opentelemetry.exporter.zipkin.ZipkinSpanExporter.
+- `CONSOLE`: Console (io.opentelemetry.exporter.logging.LoggingSpanExporter.
+- `LOGGING_OTLP`: JSON logging to console io.opentelemetry.exporter.logging.otlp.OtlpJsonLoggingSpanExporter.
+
+
+|===
+
+// end::config[]

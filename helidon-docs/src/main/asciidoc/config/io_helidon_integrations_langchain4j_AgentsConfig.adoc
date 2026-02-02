@@ -1,0 +1,66 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.langchain4j.AgentsConfig
+:keywords: helidon, config, io.helidon.integrations.langchain4j.AgentsConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.langchain4j.AgentsConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= AgentsConfig (integrations.langchain4j) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.langchain4j/io/helidon/integrations/langchain4j/AgentsConfig.html[io.helidon.integrations.langchain4j.AgentsConfig]
+
+
+This is a standalone configuration type, prefix from configuration root: `langchain4j.agents`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`async` |boolean |{nbsp} |
+|`chat-memory` |string |{nbsp} |
+|`chat-memory-provider` |string |{nbsp} |
+|`chat-model` |string |{nbsp} |
+|`content-retriever` |string |{nbsp} |
+|`description` |string |{nbsp} |
+|`enabled` |boolean |`true` |If set to `false`, agent will not be available even if configured.
+|`execute-tools-concurrently` |boolean |{nbsp} |
+|`input-guardrails` |Class[&#93; |{nbsp} |
+|`mcp-clients` |string[&#93; |{nbsp} |
+|`name` |string |{nbsp} |
+|`output-guardrails` |Class[&#93; |{nbsp} |
+|`output-key` |string |{nbsp} |
+|`retrieval-augmentor` |string |{nbsp} |
+|`tool-provider` |string |{nbsp} |
+|`tools` |Class[&#93; |{nbsp} |
+
+|===
+
+// end::config[]

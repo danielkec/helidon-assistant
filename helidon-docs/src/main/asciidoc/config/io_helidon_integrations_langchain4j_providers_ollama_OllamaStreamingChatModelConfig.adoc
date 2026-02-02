@@ -1,0 +1,78 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.langchain4j.providers.ollama.OllamaStreamingChatModelConfig
+:keywords: helidon, config, io.helidon.integrations.langchain4j.providers.ollama.OllamaStreamingChatModelConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.langchain4j.providers.ollama.OllamaStreamingChatModelConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= OllamaStreamingChatModelConfig (integrations.langchain4j.providers.ollama) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.langchain4j.providers.ollama/io/helidon/integrations/langchain4j/providers/ollama/OllamaStreamingChatModelConfig.html[io.helidon.integrations.langchain4j.providers.ollama.OllamaStreamingChatModelConfig]
+
+
+This is a standalone configuration type, prefix from configuration root: `langchain4j.providers.ollama`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`base-url` |string |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.baseUrl(java.lang.String)
+|`custom-headers` |Map&lt;string, string&gt; |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.customHeaders(java.util.Map)
+|`default-request-parameters` |ChatRequestParameters |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.defaultRequestParameters(dev.langchain4j.model.chat.request.ChatRequestParameters)
+|`enabled` |boolean |`true` |If set to `false`, OllamaStreamingChatModel will not be available even if configured.
+|`http-client-builder` |HttpClientBuilder |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.httpClientBuilder(dev.langchain4j.http.client.HttpClientBuilder)
+|`listeners` |ChatModelListener[&#93; |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.listeners(java.util.List)
+|`log-requests` |boolean |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.logRequests(java.lang.Boolean)
+|`log-responses` |boolean |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.logResponses(java.lang.Boolean)
+|`logger` |Logger |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.logger(org.slf4j.Logger)
+|`min-p` |double |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.minP(java.lang.Double)
+|`mirostat` |int |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.mirostat(java.lang.Integer)
+|`mirostat-eta` |double |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.mirostatEta(java.lang.Double)
+|`mirostat-tau` |double |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.mirostatTau(java.lang.Double)
+|`model-name` |string |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.modelName(java.lang.String)
+|`num-ctx` |int |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.numCtx(java.lang.Integer)
+|`num-predict` |int |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.numPredict(java.lang.Integer)
+|`repeat-last-n` |int |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.repeatLastN(java.lang.Integer)
+|`repeat-penalty` |double |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.repeatPenalty(java.lang.Double)
+|`response-format` |ResponseFormat |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.responseFormat(dev.langchain4j.model.chat.request.ResponseFormat)
+|`return-thinking` |boolean |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.returnThinking(java.lang.Boolean)
+|`seed` |int |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.seed(java.lang.Integer)
+|`stop` |string[&#93; |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.stop(java.util.List)
+|`supported-capabilities` |Capability[&#93; (RESPONSE_FORMAT_JSON_SCHEMA) |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.supportedCapabilities(java.util.Set)
+|`temperature` |double |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.temperature(java.lang.Double)
+|`think` |boolean |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.think(java.lang.Boolean)
+|`timeout` |Duration |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.timeout(java.time.Duration)
+|`top-k` |int |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.topK(java.lang.Integer)
+|`top-p` |double |{nbsp} |Generated from dev.langchain4j.model.ollama.OllamaBaseChatModel.Builder.topP(java.lang.Double)
+
+|===
+
+// end::config[]

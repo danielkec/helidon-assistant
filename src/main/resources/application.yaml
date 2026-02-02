@@ -17,13 +17,11 @@ langchain4j:
   models:
     openai-cheap-model:
       provider: open-ai
-      enabled: true
       # api-key is in the common provider section
       model-name: "gpt-4o-mini"
 
     gemini-flash-model:
       provider: google-gemini
-      enabled: true
       # Or it can be directly in model config
       api-key: "${GEMINI_TOKEN}"
       model-name: "gemini-3-flash-preview"
@@ -50,5 +48,5 @@ langchain4j:
       embedding-store: mp-embedding-store
 
 app:
-  helidon-repo-path: /home/daniel/idp/ora/helidon/helidon-4
+  helidon-docs-path: ./helidon-docs
   inclusions: "*.adoc"

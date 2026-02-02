@@ -1,0 +1,188 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.webserver.WebServer
+:keywords: helidon, config, io.helidon.webserver.WebServer
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.webserver.WebServer
+include::{rootdir}/includes/attributes.adoc[]
+
+= WebServer (webserver) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.webserver/io/helidon/webserver/WebServer.html[io.helidon.webserver.WebServer]
+
+
+This is a standalone configuration type, prefix from configuration root: `server`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`backlog` |int |`1024` |Accept backlog.
+|`bind-address` |SocketAddress |{nbsp} |The address to bind to. This is to permit both Internet Address (`<host>:<port>`) and Unix Domain socket
+(`unix:/path/to/socket`). If this is set it will override host(), address() and port().
+|`concurrency-limit` |io.helidon.common.concurrency.limits.Limit (service provider interface)
+
+Such as:
+
+ - xref:{rootdir}/config/io_helidon_common_concurrency_limits_ThroughputLimit.adoc[throughput (ThroughputLimit)]
+ - xref:{rootdir}/config/io_helidon_common_concurrency_limits_FixedLimit.adoc[fixed (FixedLimit)]
+ - xref:{rootdir}/config/io_helidon_common_concurrency_limits_AimdLimit.adoc[aimd (AimdLimit)]
+
+ |{nbsp} |Concurrency limit to use to limit concurrent execution of incoming requests.
+The default is to have unlimited concurrency.
+
+Note that if maxConcurrentRequests() is configured, this is ignored.
+|[.line-through]#`connection-config`# |xref:{rootdir}/config/io_helidon_webserver_ConnectionConfig.adoc[ConnectionConfig] |{nbsp} |*Deprecated* Configuration of a connection (established from client against our server).
+
+@deprecated use connectionOptions() instead
+|`connection-options` |xref:{rootdir}/config/io_helidon_common_socket_SocketOptions.adoc[SocketOptions] |{nbsp} |Options for connections accepted by this listener.
+This is not used to setup server connection.
+|`content-encoding` |xref:{rootdir}/config/io_helidon_http_encoding_ContentEncodingContext.adoc[ContentEncodingContext] |{nbsp} |Configure the listener specific io.helidon.http.encoding.ContentEncodingContext.
+This method discards all previously registered ContentEncodingContext.
+If no content encoding context is registered, content encoding context of the webserver would be used.
+|`enable-proxy-protocol` |boolean |`false` |Enable proxy protocol support for this socket. This protocol is supported by
+some load balancers/reverse proxies as a means to convey client information that
+would otherwise be lost. If enabled, the proxy protocol header must be present
+on every new connection established with your server. For more information,
+see https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt[
+the specification]. Default is `false`.
+|`error-handling` |xref:{rootdir}/config/io_helidon_webserver_ErrorHandling.adoc[ErrorHandling] |`io.helidon.webserver.ListenerConfigBlueprint.create()` |Configuration for this listener's error handling.
+|`features` |io.helidon.webserver.spi.ServerFeature[&#93; (service provider interface)
+
+Such as:
+
+ - xref:{rootdir}/config/io_helidon_webserver_accesslog_AccessLogFeature.adoc[access-log (AccessLogFeature)]
+ - xref:{rootdir}/config/io_helidon_webserver_observe_ObserveFeature.adoc[observe (ObserveFeature)]
+ - xref:{rootdir}/config/io_helidon_webserver_context_ContextFeature.adoc[context (ContextFeature)]
+ - xref:{rootdir}/config/io_helidon_openapi_OpenApiFeature.adoc[openapi (OpenApiFeature)]
+ - xref:{rootdir}/config/io_helidon_webserver_grpc_GrpcReflectionFeature.adoc[grpc-reflection (GrpcReflectionFeature)]
+ - xref:{rootdir}/config/io_helidon_webserver_cors_CorsFeature.adoc[cors (CorsFeature)]
+ - xref:{rootdir}/config/io_helidon_webserver_concurrency_limits_LimitsFeature.adoc[limits (LimitsFeature)]
+ - xref:{rootdir}/config/io_helidon_webserver_staticcontent_StaticContentFeature.adoc[static-content (StaticContentFeature)]
+ - xref:{rootdir}/config/io_helidon_integrations_eureka_EurekaRegistrationServerFeature.adoc[eureka (EurekaRegistrationServerFeature)]
+ - xref:{rootdir}/config/io_helidon_webserver_security_SecurityFeature.adoc[security (SecurityFeature)]
+
+ |{nbsp} |Server features allow customization of the server, listeners, or routings.
+|`host` |string |`0.0.0.0` |Host of the default socket. Defaults to all host addresses (`0.0.0.0`).
+|`idle-connection-period` |Duration |`PT2M` |How often should we check for idleConnectionTimeout().
+Defaults to `PT2M` (2 minutes).
+|`idle-connection-timeout` |Duration |`PT5M` |How long should we wait before closing a connection that has no traffic on it.
+Defaults to `PT5M` (5 minutes). Note that the timestamp is refreshed max. once per second, so this setting
+would be useless if configured for shorter periods of time (also not a very good support for connection keep alive,
+if the connections are killed so soon anyway).
+|`ignore-invalid-named-routing` |boolean |{nbsp} |If set to `true`, any named routing configured that does not have an associated named listener will NOT
+cause an exception to be thrown (default behavior is to throw an exception).
+|`max-concurrent-requests` |int |`-1` |Limits the number of requests that can be executed at the same time (the number of active virtual threads of requests).
+Defaults to `-1`, meaning "unlimited" - what the system allows.
+Also make sure that this number is higher than the expected time it takes to handle a single request in your application,
+as otherwise you may stop in-progress requests.
+
+Setting this option will always ignore concurrencyLimit() and will use
+the io.helidon.common.concurrency.limits.FixedLimit.
+|`max-in-memory-entity` |int |`131072` |If the entity is expected to be smaller that this number of bytes, it would be buffered in memory to optimize
+performance when writing it.
+If bigger, streaming will be used.
+
+Note that for some entity types we cannot use streaming, as they are already fully in memory (String, byte[]), for such
+cases, this option is ignored.
+
+Default is 128Kb.
+|`max-payload-size` |long |`-1` |Maximal number of bytes an entity may have.
+If io.helidon.http.HeaderNames.CONTENT_LENGTH is used, this is checked immediately,
+if io.helidon.http.HeaderValues.TRANSFER_ENCODING_CHUNKED is used, we will fail when the
+number of bytes read would exceed the max payload size.
+Defaults to unlimited (`-1`).
+|`max-tcp-connections` |int |`-1` |Limits the number of connections that can be opened at a single point in time.
+Defaults to `-1`, meaning "unlimited" - what the system allows.
+|`media-context` |xref:{rootdir}/config/io_helidon_http_media_MediaContext.adoc[MediaContext] |{nbsp} |Configure the listener specific io.helidon.http.media.MediaContext.
+This method discards all previously registered MediaContext.
+If no media context is registered, media context of the webserver would be used.
+|`name` |string |`@default` |Name of this socket. Defaults to `@default`.
+Must be defined if more than one socket is needed.
+|`port` |int |`0` |Port of the default socket.
+If configured to `0` (the default), server starts on a random port.
+|`protocols` |io.helidon.webserver.spi.ProtocolConfig[&#93; (service provider interface)
+
+Such as:
+
+ - xref:{rootdir}/config/io_helidon_webserver_http2_Http2Config.adoc[http_2 (Http2Config)]
+ - xref:{rootdir}/config/io_helidon_webserver_websocket_WsConfig.adoc[websocket (WsConfig)]
+ - xref:{rootdir}/config/io_helidon_webserver_http1_Http1Config.adoc[http_1_1 (Http1Config)]
+ - xref:{rootdir}/config/io_helidon_webserver_grpc_GrpcConfig.adoc[grpc (GrpcConfig)]
+
+ |{nbsp} |Configuration of protocols. This may be either protocol selectors, or protocol upgraders from HTTP/1.1.
+As the order is not important (providers are ordered by weight by default), we can use a configuration as an object,
+such as:
+
+----
+
+protocols:
+  providers:
+    http_1_1:
+      max-prologue-length: 8192
+    http_2:
+      max-frame-size: 4096
+    websocket:
+      ....
+
+----
+
+|[.line-through]#`receive-buffer-size`# |int |{nbsp} |*Deprecated* Listener receive buffer size.
+
+@deprecated use SocketOptions.socketReceiveBufferSize() instead
+via connectionOptions().
+|`requested-uri-discovery` |xref:{rootdir}/config/io_helidon_http_RequestedUriDiscoveryContext.adoc[RequestedUriDiscoveryContext] |{nbsp} |Requested URI discovery context.
+|`restore-response-headers` |boolean |`true` |Copy and restore response headers before and after passing a request to Jersey
+for processing. If Jersey fails to handle the request, and the Webserver continues
+processing the request, it needs to make sure the original headers are restored.
+Turn off this flag to avoid the extra overhead of copying headers when no handler
+executes after Jersey returns.
+|`shutdown-grace-period` |Duration |`PT0.5S` |Grace period in ISO 8601 duration format to allow running tasks to complete before listener's shutdown.
+Default is `500` milliseconds.
+Configuration file values example: `PT0.5S`, `PT2S`.
+|`shutdown-hook` |boolean |`true` |When true the webserver registers a shutdown hook with the JVM Runtime.
+
+Defaults to true. Set this to false such that a shutdown hook is not registered.
+|`smart-async-writes` |boolean |`false` |If enabled and writeQueueLength() is greater than 1, then
+start with async writes but possibly switch to sync writes if
+async queue size is always below a certain threshold.
+|`sockets` |xref:{rootdir}/config/io_helidon_webserver_ListenerConfig.adoc[Map&lt;string, ListenerConfig&gt;] |{nbsp} |Socket configurations.
+Note that socket named `@default` cannot be used,
+configure the values on the server directly.
+|`tls` |xref:{rootdir}/config/io_helidon_common_tls_Tls.adoc[Tls] |{nbsp} |Listener TLS configuration.
+|`use-nio` |boolean |`true` |If set to `true`, use NIO socket channel, instead of a socket. Listener will always be a channel.
+|`write-buffer-size` |int |`4096` |Initial buffer size in bytes of java.io.BufferedOutputStream created internally to
+write data to a socket connection. Default is `4096`. Set buffer size to a value
+less than one to turn off buffering.
+|`write-queue-length` |int |`0` |Number of buffers queued for write operations.
+
+|===
+
+// end::config[]

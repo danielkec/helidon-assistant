@@ -1,0 +1,65 @@
+///////////////////////////////////////////////////////////////////////////////
+
+    Copyright (c) 2026 Oracle and/or its affiliates.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+///////////////////////////////////////////////////////////////////////////////
+
+ifndef::rootdir[:rootdir: {docdir}/..]
+:description: Configuration of io.helidon.integrations.langchain4j.providers.openai.OpenAiLanguageModelConfig
+:keywords: helidon, config, io.helidon.integrations.langchain4j.providers.openai.OpenAiLanguageModelConfig
+:basic-table-intro: The table below lists the configuration keys that configure io.helidon.integrations.langchain4j.providers.openai.OpenAiLanguageModelConfig
+include::{rootdir}/includes/attributes.adoc[]
+
+= OpenAiLanguageModelConfig (integrations.langchain4j.providers.openai) Configuration
+
+// tag::config[]
+
+
+Type: link:{javadoc-base-url}/io.helidon.integrations.langchain4j.providers.openai/io/helidon/integrations/langchain4j/providers/openai/OpenAiLanguageModelConfig.html[io.helidon.integrations.langchain4j.providers.openai.OpenAiLanguageModelConfig]
+
+
+This is a standalone configuration type, prefix from configuration root: `langchain4j.providers.open-ai`
+
+
+
+== Configuration options
+
+
+
+.Optional configuration options
+[cols="3,3a,2,5a"]
+
+|===
+|key |type |default value |description
+
+|`api-key` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.apiKey(java.lang.String)
+|`base-url` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.baseUrl(java.lang.String)
+|`custom-headers` |Map&lt;string, string&gt; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.customHeaders(java.util.Map)
+|`custom-query-params` |Map&lt;string, string&gt; |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.customQueryParams(java.util.Map)
+|`enabled` |boolean |`true` |If set to `false`, OpenAiLanguageModel will not be available even if configured.
+|`http-client-builder` |HttpClientBuilder |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.httpClientBuilder(dev.langchain4j.http.client.HttpClientBuilder)
+|`log-requests` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.logRequests(java.lang.Boolean)
+|`log-responses` |boolean |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.logResponses(java.lang.Boolean)
+|`logger` |Logger |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.logger(org.slf4j.Logger)
+|`max-retries` |int |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.maxRetries(java.lang.Integer)
+|`model-name` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.modelName(java.lang.String)
+|`organization-id` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.organizationId(java.lang.String)
+|`project-id` |string |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.projectId(java.lang.String)
+|`temperature` |double |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.temperature(java.lang.Double)
+|`timeout` |Duration |{nbsp} |Generated from dev.langchain4j.model.openai.OpenAiLanguageModel.OpenAiLanguageModelBuilder.timeout(java.time.Duration)
+
+|===
+
+// end::config[]
