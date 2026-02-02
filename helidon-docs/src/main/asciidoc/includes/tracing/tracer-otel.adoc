@@ -62,7 +62,7 @@ If you provide settings under both `telemetry` and `tracing`, Helidon uses the `
 
 == Configuring OpenTelemetry Tracing
 
-include::{rootdir}/config/io_helidon_tracing_providers_opentelemetry_OpenTelemetryTracer.adoc[tag=config,levelOffset=1]
+include::{rootdir}/config/io_helidon_telemetry_otelconfig_OpenTelemetryTracingConfig.adoc[tag=config,levelOffset=1]
 ifdef::se-flavor[]
 [source,yaml]
 .Example Helidon configuration for OpenTelemetry tracing

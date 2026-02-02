@@ -2,7 +2,7 @@
 
 Helidon Assistant is a Retrieval-Augmented Generation (RAG) application built around Helidon's documentation. It provides a friendly AI chat interface to help answer Helidon-related questions.
 
-Key Features:
+### Key Features:
 
 - **Smart AsciiDoc Processing**: Special handling of AsciiDoc content during embedding creation, including:
     - Clean conversion to plain text.
@@ -12,6 +12,28 @@ Key Features:
     - Document name.
     - Section and position within the document.
 - **Stateless Backend**: Conversations are summarized on the server and stored client-side for a lightweight, scalable experience.
+
+
+Helidon Assistant demo is updated with agents and declarative HTTP resource.
+
+### Agentic structure:
+
+* HelidonExpertAgent - sequence agent with output definition serializing relevant parts of agentic context as JSON
+    * FlavorClassifierAgent - decides if question is about Helidon MP or SE and adds to context flavor enum value
+    * FlavorRouterAgent - conditional agent, uses flavor to decide which agent to invoke
+        * HelidonMpExpert - uses embedding store with ingested MP docs
+        * HelidonSeExpert - uses embedding store with ingested SE docs
+    * SummarizerAgent - summarizes previous summary and last response
+
+
+
+### Prerequisites:
+
+* `OPEN_AI_TOKEN` and `GEMINI_TOKEN` env variables to be set
+* JDK 25
+* Maven 3.8+
+
+
 
 ## Getting Started
 
