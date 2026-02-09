@@ -13,6 +13,8 @@ langchain4j:
   providers:
     open-ai:
       api-key: "${OPEN_AI_TOKEN}"
+      log-requests: false
+      log-responses: false
 
   models:
     openai-cheap-model:

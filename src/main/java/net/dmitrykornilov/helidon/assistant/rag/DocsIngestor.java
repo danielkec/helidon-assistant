@@ -1,6 +1,5 @@
 package net.dmitrykornilov.helidon.assistant.rag;
 
-import java.io.File;
 import java.lang.System.Logger;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -24,6 +23,7 @@ import static java.util.concurrent.CompletableFuture.allOf;
 import static java.util.concurrent.CompletableFuture.runAsync;
 
 @Service.Singleton
+@Service.RunLevel(1)
 public class DocsIngestor {
     private static final Logger LOGGER = System.getLogger(DocsIngestor.class.getName());
 
@@ -32,6 +32,12 @@ public class DocsIngestor {
     private final EmbeddingStore<TextSegment> seEmbeddingStore;
     private final EmbeddingStore<TextSegment> mpEmbeddingStore;
     private final EmbeddingModel embeddingModel;
+
+    @Service.PostConstruct
+    void onCreate() {
+        // Initialize embedding store
+        this.ingestAll();
+    }
 
     @Service.Inject
     DocsIngestor(Config config,
