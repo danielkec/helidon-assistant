@@ -21,16 +21,17 @@ import io.helidon.integrations.langchain4j.Ai;
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
+import net.dmitrykornilov.helidon.assistant.tools.CliTools;
 
 @Ai.Agent("helidon-se-expert")
-@Ai.ChatModel("gemini-flash-model")
+@Ai.ChatModel("openai-cheap-model")
 @Ai.ContentRetriever("mp-content-retriever")
+@Ai.Tools(CliTools.class)
 public interface HelidonSeExpert {
 
     @UserMessage("""
             You are a Helidon SE expert.
             Analyze the following user request about Helidon SE and provide the best possible answer.
-            Always warn against using reflection and stress out that Helidon SE provides best possible performance.
             The user request is {{question}}.
             """)
     @Agent(value = "A Helidon SE expert", outputKey = "lastResponse")

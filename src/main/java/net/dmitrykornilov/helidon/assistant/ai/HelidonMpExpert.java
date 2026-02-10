@@ -21,16 +21,17 @@ import io.helidon.integrations.langchain4j.Ai;
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
+import net.dmitrykornilov.helidon.assistant.tools.CliTools;
 
 @Ai.Agent("helidon-mp-expert")
 @Ai.ChatModel("openai-cheap-model")
 @Ai.ContentRetriever("mp-content-retriever")
+@Ai.Tools(CliTools.class)
 public interface HelidonMpExpert {
 
     @UserMessage("""
             You are a Helidon MP expert.
             Analyze the following user request about Helidon MP and provide the best possible answer.
-            Always warn against using native image and stress out that Helidon MP requires Jakarta APIs.
             The user request is {{question}}.
             """)
     @Agent(value = "A Helidon MP expert", outputKey = "lastResponse")
