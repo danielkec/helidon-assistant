@@ -1,4 +1,4 @@
-package net.dmitrykornilov.helidon.assistant.rag;
+package io.helidon.assistant.rag;
 
 public class Chunk {
     enum Type { SECTION, PARAGRAPH, CODE, TABLE, LIST, MIXED }

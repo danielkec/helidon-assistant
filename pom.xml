@@ -17,7 +17,7 @@
     <name>Helidon Assistant</name>
 
     <properties>
-        <mainClass>net.dmitrykornilov.helidon.assistant.ApplicationMain</mainClass>
+        <mainClass>io.helidon.assistant.ApplicationMain</mainClass>
         <version.lib.asciidoctorj>2.5.7</version.lib.asciidoctorj>
     </properties>
 

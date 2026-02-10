@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.dmitrykornilov.helidon.assistant.ai;
+package io.helidon.assistant.ai;
 
 import java.util.Collections;
 

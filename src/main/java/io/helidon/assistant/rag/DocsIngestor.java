@@ -1,4 +1,4 @@
-package net.dmitrykornilov.helidon.assistant.rag;
+package io.helidon.assistant.rag;
 
 import java.lang.System.Logger;
 import java.nio.file.Path;

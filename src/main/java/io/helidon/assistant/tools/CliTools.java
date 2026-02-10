@@ -1,4 +1,4 @@
-package net.dmitrykornilov.helidon.assistant.tools;
+package io.helidon.assistant.tools;
 
 import io.helidon.common.features.api.HelidonFlavor;
 import io.helidon.config.Config;

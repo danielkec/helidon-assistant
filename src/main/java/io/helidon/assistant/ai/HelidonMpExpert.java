@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package net.dmitrykornilov.helidon.assistant.ai;
+package io.helidon.assistant.ai;
 
 import io.helidon.integrations.langchain4j.Ai;
 
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
-import net.dmitrykornilov.helidon.assistant.tools.CliTools;
+import io.helidon.assistant.tools.CliTools;
 
 @Ai.Agent("helidon-mp-expert")
 @Ai.ChatModel("openai-cheap-model")

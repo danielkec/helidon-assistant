@@ -1,4 +1,4 @@
-package net.dmitrykornilov.helidon.assistant.rest;
+package io.helidon.assistant.rest;
 
 import io.helidon.http.Http;
 import io.helidon.service.registry.Service;
@@ -7,7 +7,7 @@ import io.helidon.webserver.http.ServerRequest;
 import io.helidon.webserver.http.ServerResponse;
 
 import jakarta.json.JsonObject;
-import net.dmitrykornilov.helidon.assistant.ai.HelidonExpertAgent;
+import io.helidon.assistant.ai.HelidonExpertAgent;
 
 import static io.helidon.common.media.type.MediaTypes.APPLICATION_JSON_VALUE;
 

@@ -1,4 +1,4 @@
-package net.dmitrykornilov.helidon.assistant;
+package io.helidon.assistant;
 
 import io.helidon.logging.common.LogConfig;
 import io.helidon.service.registry.Service;

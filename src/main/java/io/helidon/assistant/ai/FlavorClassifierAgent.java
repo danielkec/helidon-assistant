@@ -14,26 +14,27 @@
  * limitations under the License.
  */
 
-package net.dmitrykornilov.helidon.assistant.ai;
+package io.helidon.assistant.ai;
 
+import io.helidon.common.features.api.HelidonFlavor;
 import io.helidon.integrations.langchain4j.Ai;
 
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
-import net.dmitrykornilov.helidon.assistant.tools.CliTools;
 
-@Ai.Agent("helidon-se-expert")
-@Ai.ChatModel("openai-cheap-model")
-@Ai.ContentRetriever("mp-content-retriever")
-@Ai.Tools(CliTools.class)
-public interface HelidonSeExpert {
+@Ai.Agent("flavor-classifier")
+@Ai.ChatModel("gemini-flash-model")
+public interface FlavorClassifierAgent {
 
     @UserMessage("""
-            You are a Helidon SE expert.
-            Analyze the following user request about Helidon SE and provide the best possible answer.
-            The user request is {{question}}.
+            Analyze the following user request about Helidon framework and categorize it as 'mp' - MicroProfile flavor 
+            or 'se' - Standard Edition flavor of Helidon.
+            
+            In case the request doesn't belong to any of those categories categorize it as 'se'.
+            Reply with only one of those words and nothing else.
+            The user request is: '{{question}}'.
             """)
-    @Agent(value = "A Helidon SE expert", outputKey = "lastResponse")
-    String askExpert(@V("question") String question);
+    @Agent(value = "Categorize a user request", outputKey = "flavor")
+    HelidonFlavor classify(@V("question") String question);
 }
