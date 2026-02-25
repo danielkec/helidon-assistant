@@ -8,7 +8,7 @@ import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 
 @Ai.Agent("summarizer")
-@Ai.ChatModel("openai-cheap-model")
+@Ai.ChatModel("cheap-model")
 public interface SummarizerAgent {
 
     @SystemMessage("""

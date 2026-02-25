@@ -24,8 +24,8 @@ import dev.langchain4j.service.V;
 import io.helidon.assistant.tools.CliTools;
 
 @Ai.Agent("helidon-se-expert")
-@Ai.ChatModel("openai-cheap-model")
-@Ai.ContentRetriever("mp-content-retriever")
+@Ai.ChatModel("expensive-model")
+@Ai.ContentRetriever("se-content-retriever")
 @Ai.Tools(CliTools.class)
 public interface HelidonSeExpert {
 

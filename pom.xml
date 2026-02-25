@@ -31,10 +31,6 @@
             <artifactId>helidon-integrations-langchain4j-providers-open-ai</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.helidon.integrations.langchain4j.providers</groupId>
-            <artifactId>helidon-integrations-langchain4j-providers-google-gemini</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.asciidoctor</groupId>
             <artifactId>asciidoctorj</artifactId>
             <version>${version.lib.asciidoctorj}</version>
@@ -113,24 +109,10 @@
                             <version>${helidon.version}</version>
                         </path>
                     </annotationProcessorPaths>
-                    <source>25</source>
-                    <target>25</target>
-                    <release>25</release>
-                    <compilerArgs>--enable-preview</compilerArgs>
+                    <source>21</source>
+                    <target>21</target>
+                    <release>21</release>
                 </configuration>
-                <dependencies>
-                    <!-- This is not needed for applications that are not part of Helidon Maven reactor -->
-                    <dependency>
-                        <groupId>io.helidon.bundles</groupId>
-                        <artifactId>helidon-bundles-apt</artifactId>
-                        <version>${helidon.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>io.helidon.codegen</groupId>
-                        <artifactId>helidon-codegen-helidon-copyright</artifactId>
-                        <version>${helidon.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>io.helidon.service</groupId>

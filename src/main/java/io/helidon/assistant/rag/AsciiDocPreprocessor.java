@@ -35,7 +35,7 @@ public class AsciiDocPreprocessor {
                 .baseDir(adocFile.getParentFile()) // enables include:: to resolve
                 .attributes(Attributes.builder()
                                     .attribute("sourcedir", rootDir.getParent()
-                                            .resolve("java", "io", "helidon", "docs").toAbsolutePath().toString())
+                                            .resolve(Path.of("java", "io", "helidon", "docs")).toAbsolutePath().toString())
                                     .attribute("flavor-lc", flavorLc)
                                     .attribute("flavor-uc", flavorUc)
                                     .attribute("health-page",

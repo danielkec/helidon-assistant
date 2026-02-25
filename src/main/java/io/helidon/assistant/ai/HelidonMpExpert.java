@@ -24,7 +24,7 @@ import dev.langchain4j.service.V;
 import io.helidon.assistant.tools.CliTools;
 
 @Ai.Agent("helidon-mp-expert")
-@Ai.ChatModel("openai-cheap-model")
+@Ai.ChatModel("expensive-model")
 @Ai.ContentRetriever("mp-content-retriever")
 @Ai.Tools(CliTools.class)
 public interface HelidonMpExpert {

@@ -9,24 +9,22 @@ server:
           welcome: "index.html"
 
 langchain4j:
-  # Optional common configuration for all models from the provider
   providers:
     open-ai:
-      api-key: "${OPEN_AI_TOKEN}"
+      # Using OpenAI provider to call OCI GenAI model over OpenAI compatible API
+      api-key: "${OCI_API_TOKEN}"
+      base-url: https://inference.generativeai.us-chicago-1.oci.oraclecloud.com/20231130/actions
       log-requests: false
       log-responses: false
 
   models:
-    openai-cheap-model:
+    cheap-model:
       provider: open-ai
-      # api-key is in the common provider section
-      model-name: "gpt-4o-mini"
+      model-name: "meta.llama-4-scout-17b-16e-instruct"
 
-    gemini-flash-model:
-      provider: google-gemini
-      # Or it can be directly in model config
-      api-key: "${GEMINI_TOKEN}"
-      model-name: "gemini-3-flash-preview"
+    expensive-model:
+      provider: open-ai
+      model-name: "openai.gpt-oss-120b"
 
   embedding-stores:
     se-embedding-store:

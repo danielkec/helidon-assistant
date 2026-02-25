@@ -24,7 +24,7 @@ import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 
 @Ai.Agent("flavor-classifier")
-@Ai.ChatModel("gemini-flash-model")
+@Ai.ChatModel("cheap-model")
 public interface FlavorClassifierAgent {
 
     @UserMessage("""
